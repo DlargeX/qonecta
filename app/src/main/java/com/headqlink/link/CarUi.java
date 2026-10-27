@@ -114,6 +114,9 @@ final class CarUi {
     private FrameLayout root;
     private float swipeX = -1;
     private final Runnable radioChanged = () -> main.post(this::renderRadioMini);
+    /** «Seguir con la radio al conectar»: unos segundos después de abrir, cuando el audio del coche ya está. */
+    private final Runnable resumeRadio = this::resumeRadioNow;
+    static final long RADIO_RESUME_DELAY_MS = 3000;
     // Aviso del plan de carga (RoutePlanner): tarjeta ámbar abajo en el panel, por encima de Android Auto.
     private LinearLayout alertCard;
     private TextView alertTitle;
@@ -1101,7 +1104,12 @@ final class CarUi {
                 if (autoHide) setHidden(true);
             }
             main.postDelayed(floatTick, FLOAT_TICK_MS);
+            if (new Config(ctx).radioResume()) main.postDelayed(resumeRadio, RADIO_RESUME_DELAY_MS);
         });
+    }
+
+    private void resumeRadioNow() {
+        RadioPlayer.resumeSaved(ctx);
     }
 
     /** Guarda qué se veía (sección, pestaña de Coche y pantalla partida) por si la conexión vuelve enseguida (TripCarry). */
@@ -1198,6 +1206,8 @@ final class CarUi {
             if (screen != null) screen.destroy();
             screen = null;
             RadioPlayer.removeListener(radioChanged);
+            main.removeCallbacks(resumeRadio);
+            if (new Config(ctx).radioResume()) RadioPlayer.saveForResume(ctx);
             RadioPlayer.stop();
             TripLog.stop();
             CarCloud.release("ui");
@@ -1388,6 +1398,24 @@ final class CarUi {
                 if (parts.length > 2 && parts[2].endsWith("cargadores")) RouteTab.previewChargers = true;
                 // "…-filtro": con el filtro de cargadores abierto.
                 if (parts.length > 2 && parts[2].endsWith("filtro")) RouteTab.previewFilter = true;
+                // «car-0-cambiar»: «Cambiar» en la primera parada del plan.
+                // «car-0-paradas»: la tarjeta bajada hasta las paradas; «…-fijada», con la primera cambiada a mano.
+                if (parts.length > 2 && parts[2].startsWith("paradas")) {
+                    RouteTab.previewStops = true;
+                    RouteTab.previewPin = parts[2].endsWith("fijada");
+                    RoutePlanner.previewAnyCharger = true;
+                }
+                if (parts.length > 2 && parts[2].equals("cambiar")) {
+                    RouteTab.previewChange = true;
+                    RoutePlanner.previewAnyCharger = true;
+                }
+                // «…-filtro-redes»: el filtro, bajado hasta las redes; «…-filtro-redes-de», como si el móvil estuviera en
+                // Alemania (las redes de allí).
+                if (parts.length > 2 && parts[2].contains("filtro-redes")) {
+                    RouteTab.previewFilter = true;
+                    RouteTab.previewFilterNets = true;
+                    if (parts[2].endsWith("-de")) RouteTab.previewCountry = "de";
+                }
                 split = parts.length > 2 && parts[2].startsWith("partida");
                 // "…-partida-derecha": con AA en la otra mitad (solo para la captura, no se guarda).
                 if (split && parts[2].contains("derecha")) aaRight = true;

@@ -410,9 +410,13 @@ supporta.
       sopra le barre è **la media della tua auto** (dal suo storico: vedi [Dati reali
       dell'auto](#dati-reali-dellauto-account-leapmotor)) e la previsione si adatta al tuo consumo reale; all'arrivo
       compare «previsti … · reali …».
-    - **Filtrare le colonnine:** «Filtra» sceglie la potenza minima (qualsiasi, 22, 50, 100 o 150 kW) e gli operatori
-      (Tesla, Zunder, Ionity, Iberdrola, Endesa X, Repsol, Wenea…, quelli presenti sul percorso, con quante colonnine ha
-      ciascuno). La scelta viene salvata, e la seguono anche le icone a fulmine sul profilo.
+    - **Filtrare le colonnine:** «Filtra» ha tre schede. In **«Colonnine»** la potenza minima (qualsiasi, 22, 50, 100,
+      150, 200 o 300 kW), la tensione e gli **operatori**: in alto quelli sul tuo percorso, con quante colonnine ha
+      ciascuno, e sotto quelli del tuo paese dalla A alla Z (più quelli presenti quasi ovunque in Europa: Tesla, Ionity,
+      Shell, Lidl); «Mostra le reti di altri paesi» mostra il resto. Se non ne scegli nessuno valgono tutti. **«Piano di
+      ricarica»** ha con quanto arrivare, fino a quanto ricaricare, ricaricare a destinazione, il cibo, la voce e il
+      navigatore, e **«Preferite ed escluse»** le colonnine che hai segnato. La scelta viene salvata, e la seguono anche
+      le icone a fulmine sul profilo.
     - **Da dove vengono le colonnine:** in Spagna, dal **registro ufficiale** dei punti di ricarica (Ministero per la
       Transizione Ecologica, pubblicato dalla DGT su nap.dgt.es): potenza e **tensione** di ognuna. Si scarica sul
       telefono una volta alla settimana (circa 3 MB). Quello che manca nel registro (alcuni operatori non hanno
@@ -423,17 +427,22 @@ supporta.
     - **Colonnine vicino a te:** «Vicino a me» (accanto a «Filtra») cerca le colonnine a 5, 10, 25 o 50 km da dove
       sei, senza percorso, dalla più vicina: scegli l'operatore («le Wenea vicino a me») e la potenza minima, e vedi a
       che distanza sono, potenza, tensione, prese e punti, con «Vai».
-    - **Navigare con Google Maps o Waze:** in «Filtra» → «Navigare con» (se Waze è installato). Il pulsante per
-      guidare e i «Vai» aprono quello scelto. Waze non ammette soste intermedie: «Vai con le soste» ti porta alla
-      prossima.
+    - **Navigare con Google Maps o Waze:** in «Filtra» › «Piano di ricarica» › «Navigare con» (se Waze è installato). Il
+      pulsante per guidare e i «Vai» aprono quello scelto. Waze non ammette soste intermedie: «Vai con le soste» ti
+      porta alla prossima.
     - **Piano di ricarica (gratis, come ABRP):** se non arrivi con il margine, Percorso dice **dove fermarti e fino a
       quanto ricaricare** tra le colonnine del filtro: la migliore colonnina rapida dell'ultimo tratto che raggiungi e
       solo quello che serve (la C10 ricarica più lentamente sopra il 50 %: meglio due soste brevi che una lunga fino al
       100 %). Ogni sosta mostra il km, con quanto arrivi, fino a quanto ricaricare e i minuti; la linea della batteria
-      sale a ogni sosta. «Vai con le soste» apre Google Maps con le soste (fino a 3). In «Filtra» scegli con quanto
-      arrivare (10-30 %) e fino a quanto ricaricare al massimo (70-100 %); se con poco più del massimo arrivi a
-      destinazione, ricarica quello invece di fare un'altra sosta a pochi km dalla fine. Su una REEV non c'è piano: il
-      generatore mette quello che manca.
+      sale a ogni sosta. «Vai con le soste» apre Google Maps con le soste (fino a 3). In «Filtra» › «Piano di ricarica»
+      scegli con quanto arrivare (10-30 %) e fino a quanto ricaricare al massimo (70-100 %); se con poco più del massimo
+      arrivi a destinazione, ricarica quello invece di fare un'altra sosta a pochi km dalla fine. Su una REEV non c'è
+      piano: il generatore mette quello che manca.
+    - **Cambiare una sosta:** ogni sosta del piano ha «Cambia»: vedi le altre colonnine di quel tratto che raggiungi,
+      con quanto arrivi e come cambia il tempo di sosta («+5 min di sosta», «soste: 1 → 2»). «Usa questa» la fissa **per
+      questo viaggio** (📌) e il piano si ricalcola da lì; se i consumi cambiano e non ci arrivi più, ne sceglie un'altra
+      e ti avvisa. «Togli la mia scelta» torna a quella del piano. Cambiando destinazione si dimentica; per preferire
+      sempre una colonnina, segnala con ★.
     - **800 V (C10 da 81,9 kWh):** la batteria grande è a 800 V e sulle colonnine a 400–500 V ricarica, ma a metà
       potenza. Il piano si ferma a quelle a 800 V (o da 150 kW in su, che quasi sempre lo sono anche se il registro non
       lo dice) e tiene di riserva quelle a 400–500 V: l'elenco le segna in ambra («470 V: la tua auto a 800 V qui
@@ -454,11 +463,11 @@ supporta.
       minuti) per conoscere la curva reale dell'auto.
     - **Il piano si rifà da solo durante il viaggio:** con l'account Leapmotor confronta quanto scende davvero la
       batteria con quanto previsto per quei km e adatta il resto («Adattato al consumo di questo viaggio: +12 %»). Le
-      soste scelte restano finché le raggiungi con margine; se stai restando senza batteria (o ne avanza), il piano cambia
-      e **ti avvisa**: una scheda ambra nel pannello dell'auto (anche sopra Android Auto) con «Vai» (Google Maps con le
-      nuove soste) e «Percorso», il pulsante «Veicolo» in ambra e **un avviso vocale** («Piano di ricarica cambiato. Stai
-      consumando il 12 % in più del previsto. Nuova sosta: …»). La voce si disattiva in «Filtra» → «Avviso vocale se il
-      piano cambia». Mentre ricarichi non avvisa (l'hai deciso tu).
+      soste scelte restano finché le raggiungi con margine; se stai restando senza batteria (o ne avanza), il piano
+      cambia e **ti avvisa**: una scheda ambra nel pannello dell'auto (anche sopra Android Auto) con «Vai» (Google Maps
+      con le nuove soste) e «Percorso», il pulsante «Veicolo» in ambra e **un avviso vocale** («Piano di ricarica
+      cambiato. Stai consumando il 12 % in più del previsto. Nuova sosta: …»). La voce si disattiva in «Filtra» › «Piano
+      di ricarica» › «Avviso vocale se il piano cambia». Mentre ricarichi non avvisa (l'hai deciso tu).
   - «Guida»: la prossima manovra in grande, con una barra che si svuota fino alla svolta, le corsie e la manovra
     successiva; la velocità con il cartello del limite, la direzione, l'altitudine, la pendenza e il sole fino al
     tramonto.
@@ -469,8 +478,16 @@ supporta.
     «Viaggio in corso» ti dice in diretta quanto sei avanti o indietro rispetto al tuo tempo migliore fin qui
     («Fantasma: 1:20 dietro il tuo tempo migliore»), e il viaggio più veloce di ogni percorso ripetuto ha «Record del
     percorso».
-  - «Strumenti»: tachimetro con il limite e la velocità massima, forze G con la scia degli ultimi secondi e i picchi,
-    inclinazione e un punteggio di dolcezza di guida (0-100) in base agli strappi in accelerazione, frenata e sterzata.
+  - «Strumenti»: tachimetro con **il cartello del limite in grande** sotto la cifra (con un anello ambra se vai oltre e
+    rosso sopra il 10 %) e la velocità massima, forze G con la scia degli ultimi secondi e i picchi, inclinazione e un
+    punteggio di dolcezza di guida (0-100) in base agli strappi in accelerazione, frenata e sterzata.
+  - **Il limite di velocità** (Guida e Strumenti) viene da OpenStreetMap: quello della strada nel tuo senso di marcia o
+    quello della sua zona («DE:urban», «AT:rural»…). Dove manca, si assume il limite generale del paese per il tipo di
+    strada (Spagna, Portogallo, Germania, Austria, Svizzera, Italia, Francia, Paesi Bassi, Belgio e Lussemburgo), con
+    «stimato». Sull'Autobahn senza limite compare il cartello di fine limitazioni, senza colori; con i pannelli
+    variabili, nessuno. Le strade dei tuoi viaggi vengono salvate sul telefono (60 giorni): su quelle abituali il limite
+    compare anche quando i server di OpenStreetMap sono sovraccarichi. Se non si conosce, non compare nessun cartello
+    (meglio che uno sbagliato).
   - «Efficienza»: la potenza degli ultimi 2 minuti (in verde quella recuperata), il consumo attuale, del viaggio e
     medio, dove va l'energia, il costo del viaggio, la CO₂ che non è uscita da un tubo di scarico e un consiglio.
   - «Stato» (con l'account Leapmotor): batteria, autonomia, ricarica, pressione dei pneumatici, porte e contachilometri
@@ -507,10 +524,12 @@ supporta.
   dell'auto» (**5 minuti** di default; si cambia in «Impostazioni immagine» › «Avanzate»). La notifica dice «In attesa
   dell'auto · Android Auto in pausa». Se l'auto torna entro quel tempo, l'immagine ricompare **all'istante**, senza
   sbloccare il telefono né toccare nulla.
-- Quando scade «Attesa dell'auto», Qonecta+ chiude tutto: Android Auto, il suo server e la connessione. Per riusarla,
-  tocca «Connetti», o lascia fare alla connessione automatica via Bluetooth. Con l'avvio manuale del server chiude tutto
-  allo stesso modo tranne il server, che resta acceso per il prossimo viaggio ([Senza
-  accessibilità](#senza-accessibilità-avvio-manuale-del-server-di-android-auto)).
+- Quando scade «Attesa dell'auto», Qonecta+ chiude Android Auto e la connessione. **Il server di Android Auto resta
+  acceso per il prossimo viaggio**: così Android Auto si avvia anche con il telefono bloccato. Si spegne da solo se il
+  telefono si connette a una Wi-Fi senza password (bar, aree di servizio…), o alla chiusura se ci sei già; si cambia in
+  Impostazioni › «Connessione» › «Server di Android Auto acceso tra un viaggio e l'altro». Con l'avvio manuale del
+  server resta sempre acceso ([Senza accessibilità](#senza-accessibilità-avvio-manuale-del-server-di-android-auto)). Per
+  riusare Qonecta+, tocca «Connetti», o lascia fare alla connessione automatica via Bluetooth.
 - Se tocchi «Connetti» ed entro **5 minuti** (o «Attesa dell'auto», se è di più) non compare nessuna auto, Qonecta+ si
   ferma da solo. Finché l'auto continua ad annunciarsi, anche se non riesce a connettersi, l'attesa ricomincia.
 
@@ -684,7 +703,7 @@ Per connetterti senza aprire l'app:
 «Diagnostica». In mezzo, gruppi che si aprono toccandoli (ognuno dice quante opzioni ha):
 
 - **Auto:** «Verifica requisiti», «Impostazioni immagine» e «Dati dell'auto».
-- **Contenuti della modalità estesa** (solo in «Auto esteso»): «Lista TV», «Lista radio» e «Segnalibri web».
+- **Contenuti della modalità estesa** (solo in «Auto esteso»): «Lista TV», «Lista radio», «Segnalibri web» e «Home Assistant».
 - **Giochi** (solo in «Auto esteso»): «Cartella giochi».
 - **App:** «Cerca nuova versione», «Lingua», «Aggiungi widget alla schermata Home» e «Aggiungi pulsante a Impostazioni
   rapide» (Android 13+).
@@ -747,6 +766,12 @@ Se sei connesso, salvando un altro profilo l'auto e Android Auto si riconnettono
 - «Avanzate ▾» › «Avvio del server di Android Auto»: «Automatico (accessibilità) · Consigliato» o «Manuale (senza
   accessibilità)» (sezione 3, [Senza accessibilità](#senza-accessibilità-avvio-manuale-del-server-di-android-auto)).
   Si applica subito.
+- Impostazioni › «Connessione» › «Server di Android Auto acceso tra un viaggio e l'altro» (solo con l'avvio automatico;
+  attivo di default): il server non si spegne alla fine, e il viaggio successivo avvia Android Auto con il telefono
+  bloccato (per accenderlo servono le impostazioni di Android Auto, che a telefono bloccato non si possono usare). Si
+  spegne da solo su una Wi-Fi senza password (Android 12 o successivo; prima non si può sapere e resta acceso).
+  Riavviando il telefono o aggiornando Android Auto si spegne, e la prima volta ricompare «Sblocca il telefono per
+  avviare Android Auto». Disattivato: si spegne alla fine di ogni viaggio, come prima.
 - Il resto di «Avanzate» (fps, kbps, larghezza, altezza, profilo H.264, ottimizzazioni di latenza, freno video) serve per
   i test. Lascialo vuoto o com'è.
 
@@ -788,7 +813,11 @@ Su Android 12 o precedente, l'app usa la lingua del sistema.
 
 ### «Lista TV» e «Lista radio» («Auto esteso»)
 
-Incolla l'URL di una lista M3U o tocca «Scegli file». Senza una lista radio, l'auto mostra le stazioni popolari.
+Incolla l'URL di una lista M3U (per la TV, anche la lista JSON di TDTChannels:
+`https://www.tdtchannels.com/lists/tv.json`) e tocca **«Aggiungi lista»**: compare in alto con un ✓. Se chiudi con l'URL
+incollato senza toccarlo, viene aggiunta lo stesso. Puoi anche toccare «Scegli file». Senza una lista radio, l'auto
+mostra le stazioni popolari: le più ascoltate del tuo paese (quello della regione del telefono o, se non la indica,
+quello della rete mobile). In auto, Radio › «Popolari» › «Cambia paese» ne sceglie un altro, e «Automatico» torna al tuo.
 
 ### «La mia musica» (Radio, «Auto esteso»)
 
@@ -797,10 +826,25 @@ Android: cartella Musica, Download o una chiavetta USB), per artista e album. To
 «Casuale» li mescola. Suona come la radio: continua cambiando schermata, con il mini lettore del pannello e i comandi
 al volante. Serve il permesso «Foto, video, musica e posizione» (Android 13 o successivo).
 
+Se la radio o «La mia musica» era in riproduzione quando è finita la connessione con l'auto (spegnendola, per
+esempio), riparte da sola alla connessione successiva; un brano, da dove era. Se l'avevi fermata, no. Si disattiva in
+Impostazioni › «Schermo dell'auto» › «Riprendi la radio alla connessione».
+
 ### «Segnalibri web» («Auto esteso»)
 
 Le scorciatoie della schermata «Web» dell'auto (di default YouTube, Google, Wikipedia e Twitch). Aggiungi i tuoi con
 nome e indirizzo, toglili o riordinali con le frecce; «Predefiniti» rimette i quattro originali.
+
+### «Home Assistant» («Auto esteso»)
+
+Se hai Home Assistant, inserisci l'indirizzo esterno di casa (Nabu Casa o il tuo dominio: in auto il telefono usa i dati
+mobili) e un token di accesso di lunga durata (Home Assistant › il tuo profilo › Sicurezza), e tocca «Prova e salva». In
+auto, il pulsante **«Home Assistant»** del pannello laterale apre **il tuo pannello completo**, con le sue schede, senza
+accedere di nuovo (usa lo stesso token). In «Il mio pannello in auto» scegli un altro pannello (il suo percorso, come
+`lovelace/auto`, o incolla il suo indirizzo); vuoto, quello solito. Se scegli anche degli elementi sul telefono (luci,
+prese, garage, tapparelle, scene, sensori), «‹ I miei pulsanti» li mostra con pulsanti grandi e «▦ Il mio pannello»
+torna al pannello; resta salvato l'ultimo visto. Il token è salvato cifrato; mentre il pannello è aperto lo usa la sua
+pagina, e alla chiusura viene cancellato da lì.
 
 ### «Acquario» (Giochi › Per l'attesa)
 

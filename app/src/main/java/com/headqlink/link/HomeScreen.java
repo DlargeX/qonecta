@@ -17,7 +17,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Casa (Home Assistant) en el coche: los elementos elegidos en el móvil en botones grandes (luces, enchufes, garaje,
+ * Home Assistant en el coche: al entrar, «Mi panel» (el panel completo del usuario, buildPanel); con «‹ Mis botones», los
+ * elementos elegidos en el móvil en botones grandes (luces, enchufes, garaje,
  * persianas, cerraduras, escenas, scripts…) con su estado. Un toque hace lo suyo (HomeAssistant.action); las cerraduras y
  * puertas piden confirmar. Los sensores y el clima solo se miran. Se actualiza cada 5 s mientras se ve.
  *
@@ -34,26 +35,52 @@ final class HomeScreen implements CarScreen {
     private GridLayout grid;
     private View empty;
     private volatile boolean running;
+    /** Cada vez que se (re)empiezan las lecturas: las de una vuelta anterior se paran solas. */
+    private volatile int gen;
     private final List<HomeAssistant.Entity> shown = new ArrayList<>();
     /** Elemento con un toque en curso (se pinta «…» hasta la respuesta). */
     private String busy;
-    private final Runnable loop = new Runnable() {
-        @Override
-        public void run() {
-            if (!running) return;
-            load();
-            // La siguiente lectura, otra vez en su hilo (postDelayed la correría en el de la pantalla: red prohibida).
-            host.post(() -> {
-                if (running && area != null) area.postDelayed(() -> new Thread(this, "hql-home").start(), REFRESH_MS);
-            });
-        }
-    };
+    /** Los botones de la casa (para volver a ellos desde «Mi panel»). */
+    private View tiles;
+    /** «Mi panel» abierto: la web de Home Assistant y el guion de su sesión. */
+    private android.webkit.WebView panelWeb;
+    private androidx.webkit.ScriptHandler sessionHandle;
 
     @Override
     public View create(Host h) {
         host = h;
-        Context c = h.context();
-        ha = new HomeAssistant(c);
+        ha = new HomeAssistant(h.context());
+        tiles = buildTiles(h.context());
+        // Al entrar, «Mi panel» (lo de siempre), salvo si la última vez se pasó a los botones grandes; sin botones
+        // elegidos, siempre el panel (solo habría el aviso).
+        if (ha.configured() && (ha.panelOpen() || ha.entities().isEmpty())) return buildPanel(h.context());
+        startTiles();
+        return tiles;
+    }
+
+    /** La página no se rehace al pasar de día a noche con el panel abierto (se volvería a cargar). */
+    @Override
+    public boolean keepOnThemeChange() {
+        return panelWeb != null;
+    }
+
+    private void startTiles() {
+        if (grid == null) return;
+        running = true;
+        int g = ++gen;
+        new Thread(() -> tick(g), "hql-home").start();
+    }
+
+    /** Una lectura y la siguiente a los REFRESH_MS, otra vez en su hilo (en el de la pantalla, la red está prohibida). */
+    private void tick(int g) {
+        if (!running || g != gen) return;
+        load();
+        host.post(() -> {
+            if (running && g == gen && area != null) area.postDelayed(() -> new Thread(() -> tick(g), "hql-home").start(), REFRESH_MS);
+        });
+    }
+
+    private View buildTiles(Context c) {
         LinearLayout col = new LinearLayout(c);
         col.setOrientation(LinearLayout.VERTICAL);
         col.setBackgroundColor(CarKit.BG);
@@ -68,6 +95,12 @@ final class HomeScreen implements CarScreen {
         status.setSingleLine(true);
         status.setEllipsize(android.text.TextUtils.TruncateAt.END);
         head.addView(status, new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.WRAP_CONTENT, 1f));
+        // «Mi panel»: el panel completo de Home Assistant (sus tarjetas, como en casa).
+        if (ha.configured()) {
+            TextView panel = CarStyle.pill(c, "▦ " + Str.get(R.string.hql_ha_panel));
+            panel.setOnClickListener(v -> openPanel());
+            head.addView(panel);
+        }
         col.addView(head);
         area = new FrameLayout(c);
         col.addView(area, new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 0, 1f));
@@ -89,14 +122,142 @@ final class HomeScreen implements CarScreen {
         empty.setVisibility(View.GONE);
         area.addView(empty);
         status.setText(Str.get(R.string.hql_ha_loading));
-        running = true;
-        new Thread(loop, "hql-home").start();
         return col;
     }
 
     @Override
     public void destroy() {
         running = false;
+        closePanelWeb();
+    }
+
+    // ------------------------------------------------------------------ «Mi panel»
+
+    private void openPanel() {
+        running = false;
+        ha.setPanelOpen(true);
+        host.setContent(buildPanel(host.context()));
+    }
+
+    /** «‹ Casa»: de vuelta a los botones. */
+    private void closePanel() {
+        ha.setPanelOpen(false);
+        closePanelWeb();
+        host.setContent(tiles);
+        startTiles();
+    }
+
+    /**
+     * El panel de Home Assistant a pantalla completa: su web con la sesión hecha con el token de la app (sin pedir usuario
+     * ni contraseña), con «‹ Casa» y «⟳» arriba. Nunca se registra la dirección ni el token.
+     */
+    @android.annotation.SuppressLint("SetJavaScriptEnabled")
+    private View buildPanel(Context c) {
+        LinearLayout col = new LinearLayout(c);
+        col.setOrientation(LinearLayout.VERTICAL);
+        col.setBackgroundColor(CarKit.BG);
+        LinearLayout bar = CarStyle.bar(c);
+        // «Mis botones» (los botones grandes elegidos en el móvil), solo si hay alguno.
+        TextView back = CarStyle.pill(c, "‹ " + Str.get(R.string.hql_ha_buttons));
+        TextView title = CarStyle.text(c, Str.get(R.string.hql_ha_panel), 24, CarStyle.TEXT_DIM);
+        title.setPadding(22, 0, 22, 0);
+        title.setSingleLine(true);
+        TextView reload = CarStyle.pill(c, "⟳");
+        if (!ha.entities().isEmpty()) bar.addView(back);
+        bar.addView(title, new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.WRAP_CONTENT, 1f));
+        bar.addView(reload);
+        col.addView(bar);
+        FrameLayout body = new FrameLayout(c);
+        col.addView(body, new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 0, 1f));
+        android.webkit.WebView w = new android.webkit.WebView(c);
+        panelWeb = w;
+        android.webkit.WebSettings s = w.getSettings();
+        s.setJavaScriptEnabled(true);
+        s.setDomStorageEnabled(true);
+        s.setMediaPlaybackRequiresUserGesture(false);
+        WebScreen.applyDark(s);
+        w.setBackgroundColor(CarKit.BG);
+        TextView error = CarStyle.text(c, "", 26, CarStyle.TEXT_DIM);
+        error.setGravity(Gravity.CENTER);
+        error.setPadding(60, 0, 60, 0);
+        error.setVisibility(View.GONE);
+        body.addView(w, CarStyle.match());
+        body.addView(error, CarStyle.match());
+        String origin = HomeAssistant.origin(ha.url());
+        String target = ha.panelUrl();
+        // Sin el guion antes de la página (WebView viejo): primero una página suya que no arranca la web, se deja la
+        // sesión y luego el panel.
+        boolean early = androidx.webkit.WebViewFeature.isFeatureSupported(androidx.webkit.WebViewFeature.DOCUMENT_START_SCRIPT);
+        String[] script = new String[1];
+        w.setWebViewClient(new android.webkit.WebViewClient() {
+            @Override
+            public void onPageFinished(android.webkit.WebView v, String url) {
+                if (!early && url != null && url.endsWith("/manifest.json") && script[0] != null) {
+                    v.evaluateJavascript(script[0], r -> v.loadUrl(target));
+                }
+            }
+
+            @Override
+            public void onReceivedError(android.webkit.WebView v, android.webkit.WebResourceRequest req,
+                                        android.webkit.WebResourceError err) {
+                if (!req.isForMainFrame()) return;
+                L.w("Casa: el panel de Home Assistant no carga (" + err.getErrorCode() + ")");
+                error.setText(Str.get(R.string.hql_ha_error, String.valueOf(err.getDescription())));
+                error.setVisibility(View.VISIBLE);
+            }
+        });
+        back.setOnClickListener(v -> closePanel());
+        reload.setOnClickListener(v -> {
+            error.setVisibility(View.GONE);
+            w.reload();
+        });
+        // El token se descifra fuera de la pantalla (el Keystore puede tardar).
+        new Thread(() -> {
+            String js;
+            try {
+                js = ha.sessionScript();
+            } catch (Exception e) {
+                String why = HomeAssistant.reason(e);
+                L.w("Casa: sin sesión para el panel (" + why + ")");
+                host.post(() -> {
+                    error.setText(Str.get(R.string.hql_ha_error, why));
+                    error.setVisibility(View.VISIBLE);
+                });
+                return;
+            }
+            host.post(() -> {
+                if (panelWeb != w) return;
+                L.i("Casa: abro el panel de Home Assistant" + (ha.panel().isEmpty() ? "" : " (uno elegido)")
+                        + (early ? "" : " · sesión sin guion previo"));
+                if (early) {
+                    try {
+                        sessionHandle = androidx.webkit.WebViewCompat.addDocumentStartJavaScript(w, js,
+                                java.util.Collections.singleton(origin));
+                    } catch (RuntimeException e) {
+                        L.w("Casa: el guion de la sesión no se pudo poner (" + e.getClass().getSimpleName() + ")");
+                    }
+                    w.loadUrl(target);
+                } else {
+                    script[0] = js;
+                    w.loadUrl(origin + "/manifest.json");
+                }
+            });
+        }, "hql-home-panel").start();
+        return col;
+    }
+
+    /** Cierra la web del panel y borra su sesión (el token no se queda guardado en el navegador). */
+    private void closePanelWeb() {
+        android.webkit.WebView w = panelWeb;
+        if (w == null) return;
+        panelWeb = null;
+        if (sessionHandle != null) {
+            sessionHandle.remove();
+            sessionHandle = null;
+        }
+        w.stopLoading();
+        w.evaluateJavascript(HomeAssistant.SESSION_CLEAR, null);
+        new android.os.Handler(android.os.Looper.getMainLooper()).postDelayed(w::destroy, 400);
     }
 
     /** Lee los estados (hilo propio) y repinta. */

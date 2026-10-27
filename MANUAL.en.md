@@ -400,9 +400,13 @@ version). That tells us whether the C10 supports it.
       hills cost ("Ahead: up 90 m, down 20 m: +0.5 kWh"). With the Leapmotor account, the dashed line over the bars is
       **your car's average** (from its history: see [Real car data](#real-car-data-leapmotor-account)) and the forecast
       is fitted to your real consumption; on arrival it shows "expected … · real …".
-    - **Filter chargers:** "Filter" picks the minimum power (any, 22, 50, 100 or 150 kW) and the networks (Tesla, Zunder,
-      Ionity, Iberdrola, Endesa X, Repsol, Wenea…, those on the route, with how many chargers each has). It is saved,
-      and the bolts on the profile follow it too.
+    - **Filter chargers:** "Filter" has three tabs. In **"Chargers"**, the minimum power (any, 22, 50, 100, 150, 200 or
+      300 kW), the voltage and the **networks**: at the top the ones on your route, with how many chargers each has, and
+      below those of your country from A to Z (plus the ones found almost everywhere in Europe: Tesla, Ionity, Shell,
+      Lidl); "Show networks from other countries" shows the rest. With none ticked, all count. **"Charging plan"** has
+      what to arrive with, how far to charge, charging at the destination, food, voice and the navigation app, and
+      **"Favourites and banned"**, the chargers you have marked. It is saved, and the bolts on the profile follow it
+      too.
     - **Where the chargers come from:** in Spain, from the **official registry** of charging points (Ministry for the
       Ecological Transition, published by the DGT at nap.dgt.es): the power and **voltage** of each one. It is
       downloaded on the phone once a week (about 3 MB). What the registry lacks (some operators have not registered
@@ -412,16 +416,21 @@ version). That tells us whether the C10 supports it.
     - **Chargers near you:** "Near me" (next to "Filter") finds the chargers 5, 10, 25 or 50 km from where you are,
       without a route, nearest first: pick the network ("the Wenea ones near me") and the minimum power, and see how far
       they are, their power, voltage, sockets and points, with "Go".
-    - **Navigate with Google Maps or Waze:** in "Filter" → "Navigate with" (if Waze is installed). The guide button
-      and the "Go" buttons open the chosen one. Waze has no intermediate stops: "Go with the stops" takes you to the
-      next one.
+    - **Navigate with Google Maps or Waze:** in "Filter" › "Charging plan" › "Navigate with" (if Waze is installed). The
+      guide button and the "Go" buttons open the chosen one. Waze has no intermediate stops: "Go with the stops" takes
+      you to the next one.
     - **Charging plan (free, like ABRP):** if you won't arrive with the margin, Route says **where to stop and how far
       to charge** among the filtered chargers: the best fast charger in the last stretch you can reach and only what is
       needed (the C10 charges more slowly above 50 %: two short stops beat one long one to 100 %). Each stop shows the
       km, what you arrive with, how far to charge and the minutes; the battery line jumps up at each stop. "Go with the
-      stops" opens Google Maps with them (up to 3). In "Filter" you choose what to arrive with (10-30 %) and the most to
-      charge to (70-100 %); if a little more than the maximum gets you to the destination, it charges that instead of
-      adding a stop a few km from the end. There is no plan on a REEV: the generator covers the rest.
+      stops" opens Google Maps with them (up to 3). In "Filter" › "Charging plan" you choose what to arrive with (10-30
+      %) and the most to charge to (70-100 %); if a little more than the maximum gets you to the destination, it charges
+      that instead of adding a stop a few km from the end. There is no plan on a REEV: the generator covers the rest.
+    - **Change a stop:** each stop of the plan has "Change": you see the other chargers on that stretch you can reach,
+      what you arrive with and how the stopped time changes ("+5 min stopped", "stops: 1 → 2"). "Use this" fixes it
+      **for this trip** (📌) and the plan is redone from it; if consumption changes and you can no longer reach it, it
+      picks another and tells you. "Remove my choice" goes back to the plan's one. It is forgotten when you change
+      destination; to always prefer a charger, mark it with ★.
     - **800 V (81.9 kWh C10):** the big battery is 800 V and charges on 400–500 V chargers, but at half power. The plan
       stops at 800 V ones (or 150 kW and up, which almost always are, even if the registry does not say so) and keeps
       the 400–500 V ones in reserve: the list marks them in amber ("470 V: your 800 V car charges here at half power")
@@ -442,9 +451,9 @@ version). That tells us whether the C10 supports it.
       drops with what was expected for those km and adjusts the rest ("Adjusted to this trip's consumption: +12 %").
       Chosen stops are kept while you reach them with margin; if you are running short (or have extra), the plan changes
       and **tells you**: an amber card on the car panel (also over Android Auto) with "Go" (Google Maps with the new
-      stops) and "Route", the "Car" button in amber and **a voice alert** ("Charging plan changed. You're using 12 % more
-      than expected. New stop: …"). Turn the voice off in "Filter" → "Voice alert if the plan changes". It does not alert
-      while you are charging (that was your call).
+      stops) and "Route", the "Car" button in amber and **a voice alert** ("Charging plan changed. You're using 12 %
+      more than expected. New stop: …"). Turn the voice off in "Filter" › "Charging plan" › "Voice alert if the plan
+      changes". It does not alert while you are charging (that was your call).
   - "Driving": the next manoeuvre in large, with a bar that empties until the turn, the lanes and the manoeuvre after;
     the speed with the speed-limit sign, heading, altitude, slope and the sun until sunset.
   - "Trips": the current trip and the saved ones, with their route, consumption, climbing and cost; the km of the last
@@ -453,8 +462,15 @@ version). That tells us whether the C10 supports it.
     are known for trips from 0.2.7 on. **The ghost:** if you repeat a road (same start, same way), "Current trip" tells
     you live how far ahead of or behind your best time to this point you are ("Ghost: 1:20 behind your best time"), and
     the fastest trip of each repeated road gets "Route record".
-  - "Gauges": speedometer with the limit and the maximum, G forces with the trail of the last seconds and the peaks,
-    inclination and a smoothness score (0-100) from the jerks when accelerating, braking and turning.
+  - "Gauges": speedometer with **the speed limit sign in large** under the figure (with an amber ring if you are above it
+    and red beyond 10 %) and the maximum, G forces with the trail of the last seconds and the peaks, inclination and a
+    smoothness score (0-100) from the jerks when accelerating, braking and turning.
+  - **The speed limit** (Driving and Gauges) comes from OpenStreetMap: the one of the road in your direction or that of
+    its zone ("DE:urban", "AT:rural"…). Where it is missing, the country's general limit for the road type is assumed
+    (Spain, Portugal, Germany, Austria, Switzerland, Italy, France, the Netherlands, Belgium and Luxembourg) and marked
+    "estimated". On an Autobahn without a limit you see the end-of-restrictions sign, with no colours; with variable
+    signs, none. The roads of your trips are kept on the phone (60 days): on your usual ones, the limit shows even when
+    the OpenStreetMap servers are overloaded. When it is not known, no sign is shown (better than a wrong one).
   - "Efficiency": the power of the last 2 minutes (what is recovered in green), consumption now, for the trip and on
     average, where the energy goes, the trip cost, the CO₂ that did not come out of a tailpipe and a tip.
   - "Status" (with the Leapmotor account): the car's real battery, range, charging, tyre pressures, doors and odometer,
@@ -488,10 +504,12 @@ version). That tells us whether the C10 supports it.
   car" (**5 minutes** by default; change it in "Picture settings" › "Advanced"). The notification says "Waiting for the
   car · Android Auto paused". If the car comes back within that time, the picture returns **instantly**, without
   unlocking the phone or tapping anything.
-- Once "Wait for the car" runs out, Qonecta+ closes everything: Android Auto, its server and the connection. To use it
-  again, tap "Connect", or let the Bluetooth automatic connection handle it. With the manual server start it closes
-  everything the same way except the server, which stays on for the next trip ([Without
-  accessibility](#without-accessibility-manual-start-of-the-android-auto-server)).
+- Once "Wait for the car" runs out, Qonecta+ closes Android Auto and the connection. **The Android Auto server stays on
+  for the next trip**: that way Android Auto starts even with the phone locked. It turns off by itself if the phone
+  joins a Wi-Fi without a password (cafés, service areas…), or on closing if you are already on one; change it in
+  Settings › "Connection" › "Android Auto server on between trips". With the manual server start it always stays on
+  ([Without accessibility](#without-accessibility-manual-start-of-the-android-auto-server)). To use Qonecta+ again, tap
+  "Connect", or let the Bluetooth automatic connection handle it.
 - If you tap "Connect" and no car shows up within **5 minutes** (or "Wait for the car", if longer), Qonecta+ stops by
   itself. As long as the car keeps announcing itself, even if it doesn't connect, the wait starts over.
 
@@ -662,7 +680,7 @@ Everything is in the ⚙ menu on the main screen, a panel that slides up from th
 "Diagnostics" at the bottom. In between, groups that open when tapped (each one says how many options it has):
 
 - **Car:** "Requirements check", "Picture settings" and "Car data".
-- **Extended mode content** (only in "Auto extended"): "TV list", "Radio list" and "Web bookmarks".
+- **Extended mode content** (only in "Auto extended"): "TV list", "Radio list", "Web bookmarks" and "Home Assistant".
 - **Games** (only in "Auto extended"): "Games folder".
 - **App:** "Check for new version", "Language", "Add widget to the home screen" and "Add button to Quick Settings"
   (Android 13+).
@@ -723,6 +741,12 @@ If you're connected, saving another profile makes the car and Android Auto recon
 - "Advanced ▾" › "Android Auto server start": "Automatic (accessibility) · Recommended" or "Manual (no accessibility)"
   (section 3, [Without accessibility](#without-accessibility-manual-start-of-the-android-auto-server)). Applies
   immediately.
+- Settings › "Connection" › "Android Auto server on between trips" (automatic start only; on by default): the server
+  isn't turned off at the end, and the next trip starts Android Auto with the phone locked (starting it needs Android
+  Auto's settings, which can't be used with the phone locked). It turns off by itself on a Wi-Fi without a password
+  (Android 12 or later; on older versions this can't be known and it stays on). Restarting the phone or an Android Auto
+  update turns it off, and the first time "Unlock the phone to start Android Auto" shows again. Off: it is turned off
+  after every trip, as before.
 - The rest of "Advanced" (fps, kbps, width, height, H.264 profile, latency optimizations, throttle) is for testing.
   Leave it empty or as it is.
 
@@ -762,7 +786,11 @@ language.
 
 ### "TV list" and "Radio list" ("Auto extended")
 
-Paste the URL of an M3U list or tap "Choose file". Without a radio list, the car shows the popular stations.
+Paste the URL of an M3U list (for TV, also the TDTChannels JSON list: `https://www.tdtchannels.com/lists/tv.json`) and
+tap **"Add list"**: it appears at the top with a ✓. If you close with the URL pasted without tapping it, it is added
+anyway. You can also tap "Choose file". Without a radio list, the car shows the popular stations: the most listened
+to in your country (the phone's region or, if it has none, the mobile network's country). In the car, Radio ›
+"Popular" › "Change country" picks another one, and "Automatic" goes back to yours.
 
 ### "My music" (Radio, "Auto extended")
 
@@ -771,10 +799,25 @@ the Music folder, Downloads or a USB drive), by artist and album. Tap one and th
 It plays like the radio: it keeps going when you change screen, with the panel's mini player and the steering
 wheel buttons. It needs the "Photos, videos, music and location" permission (Android 13 or later).
 
+If the radio or "My music" was playing when the connection with the car ended (when you switch it off, for example),
+it carries on by itself when you connect again; a song, from where it was. Not if you had stopped it. Turn it off in
+Settings › "Car screen" › "Resume the radio when connecting".
+
 ### "Web bookmarks" ("Auto extended")
 
 The shortcuts on the car's "Web" screen (YouTube, Google, Wikipedia and Twitch by default). Add your own with a
 name and an address, remove them or reorder them with the arrows; "Defaults" puts back the original four.
+
+### "Home Assistant" ("Auto extended")
+
+If you have Home Assistant, enter your home's outside address (Nabu Casa or your own domain: in the car the phone uses
+mobile data) and a long-lived access token (Home Assistant › your profile › Security), and tap "Test and save". In the
+car, the side panel's **"Home Assistant"** button opens **your full dashboard**, with its cards, without logging in
+again (it uses the same token). In "My dashboard in the car" you pick another dashboard (its path, such as
+`lovelace/car`, or paste its address); empty, your usual one. If you also pick items on the phone (lights, plugs,
+garage, blinds, scenes, sensors), "‹ My buttons" shows them as big buttons and "▦ My dashboard" goes back to the
+dashboard; the last one you saw is remembered. The token is stored encrypted; while the dashboard is open its page uses
+it, and it is removed from it when you close it.
 
 ### "Aquarium" (Games › For the wait)
 

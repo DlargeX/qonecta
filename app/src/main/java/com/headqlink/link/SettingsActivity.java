@@ -170,6 +170,18 @@ public class SettingsActivity extends Activity implements LinkState.Listener {
                 () -> Str.get(cfg.aaServerManual() ? R.string.hql_aa_server_start_manual : R.string.hql_aa_server_start_auto));
         server.setOnClickListener(v -> pickAaServer());
         visibleWhen(server, () -> Config.isAa(cfg.mode()));
+        // Solo con el arranque automático: en el manual el servidor se queda siempre encendido.
+        View keep = switchRow(Str.get(R.string.hql_aa_server_keep), () -> Str.get(R.string.hql_aa_server_keep_sum),
+                cfg::aaServerKeepOn, on -> {
+                    cfg.putBool(Config.AA_SERVER_KEEP_ON, on);
+                    L.life("«Servidor de Android Auto encendido entre viajes»: " + (on ? "sí" : "no")
+                            + " (vale desde el próximo cierre)");
+                    if (on) return;
+                    OpenWifiGuard.disarm(this);
+                    // Apagado ya, si está encendido y no hay viaje en curso (como el cierre de siempre).
+                    if (!LinkState.running && AaServerStarter.serverLikelyOn(this)) AaServerStarter.requestStop(this);
+                });
+        visibleWhen(keep, () -> Config.isAa(cfg.mode()) && !cfg.aaServerManual());
     }
 
     private void buildImage() {
@@ -205,6 +217,12 @@ public class SettingsActivity extends Activity implements LinkState.Listener {
             cfg.putBool(Config.SPLIT_AA_RIGHT, on);
             CarUi.applySplitAaRight(on);
         });
+        switchRow(Str.get(R.string.hql_radio_resume),
+                () -> Str.get(R.string.hql_radio_resume_help) + (extended() ? "" : "\n" + Str.get(R.string.hql_aj_ext_only)),
+                cfg::radioResume, on -> {
+                    cfg.putBool(Config.RADIO_RESUME, on);
+                    L.i("radio: seguir al conectar " + (on ? "sí" : "no"));
+                });
         switchRow(Str.get(R.string.hql_psx_enhanced), () -> Str.get(R.string.hql_psx_enhanced_sum), cfg::psxEnhanced, on -> {
             cfg.putBool(Config.PSX_ENHANCED, on);
             L.i("PlayStation: imagen " + (on ? "mejorada" : "original") + " (se aplica al abrir el próximo juego)");
@@ -854,7 +872,7 @@ public class SettingsActivity extends Activity implements LinkState.Listener {
     }
 
     /** Fila con interruptor: se toca la fila entera o el interruptor; el cambio se guarda en el acto. */
-    private void switchRow(String title, Supplier<String> summary, BooleanSupplier get, Consumer<Boolean> set) {
+    private LinearLayout switchRow(String title, Supplier<String> summary, BooleanSupplier get, Consumer<Boolean> set) {
         LinearLayout r = row(title, summary);
         MaterialSwitch sw = new MaterialSwitch(this);
         LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
@@ -874,6 +892,7 @@ public class SettingsActivity extends Activity implements LinkState.Listener {
             sw.setChecked(on);
             syncing = false;
         });
+        return r;
     }
 
     /** Una línea de ayuda suelta, sangrada como las filas. */

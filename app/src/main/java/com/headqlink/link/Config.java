@@ -860,6 +860,28 @@ final class Config {
     }
 
     /** Tarjeta flotante con la próxima parada sobre Android Auto (CarUi/FloatCard). */
+    /**
+     * «Seguir con la radio al conectar» (por defecto, sí): si la radio o «Mi música» sonaba al cerrarse la interfaz propia,
+     * sigue sola en la próxima sesión (RadioPlayer.saveForResume / resumeSaved). Si estaba parada, no.
+     */
+    static final String RADIO_RESUME = "radio_resume";
+
+    boolean radioResume() {
+        return sp.getBoolean(RADIO_RESUME, true);
+    }
+
+    /** País de las emisoras «Populares» (código de dos letras), o "" = automático (RadioScreen.autoCountry). */
+    static final String RADIO_COUNTRY = "radio_country";
+
+    String radioCountry() {
+        String v = sp.getString(RADIO_COUNTRY, "");
+        return v == null ? "" : v;
+    }
+
+    void setRadioCountry(String iso) {
+        sp.edit().putString(RADIO_COUNTRY, iso == null ? "" : iso.toUpperCase(java.util.Locale.US)).apply();
+    }
+
     static final String FLOAT_CARD = "float_card";
 
     boolean floatCard() {
@@ -1262,6 +1284,17 @@ final class Config {
 
     void setAaServerManual(boolean manual) {
         sp.edit().putString(AA_SERVER_START, manual ? AA_SERVER_MANUAL : AA_SERVER_AUTO).apply();
+    }
+
+    /**
+     * Arranque automático: dejar el servidor de Android Auto encendido entre viajes (por defecto, sí). Así el viaje
+     * siguiente arranca Android Auto con el móvil bloqueado (encenderlo necesita los ajustes de AA, que bloqueado no se
+     * pueden manejar). Se apaga solo si el móvil se conecta a una Wi-Fi sin contraseña (OpenWifiGuard).
+     */
+    static final String AA_SERVER_KEEP_ON = "aa_server_keep_on";
+
+    boolean aaServerKeepOn() {
+        return sp.getBoolean(AA_SERVER_KEEP_ON, true);
     }
 
     /** Lo guardado si es una de las dos opciones; si no, el automático. */

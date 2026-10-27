@@ -410,9 +410,12 @@ admite.
       barras es **la media de tu coche** (lo que dice su historial: ver [Datos reales del
       coche](#datos-reales-del-coche-cuenta-leapmotor)) y la previsión se ajusta a tu consumo real; al llegar se ve
       «previsto … · real …».
-    - **Filtrar cargadores:** «Filtrar» elige la potencia mínima (cualquiera, 22, 50, 100 o 150 kW) y las redes (Tesla,
-      Zunder, Ionity, Iberdrola, Endesa X, Repsol, Wenea…, las que haya en la ruta, con cuántos cargadores tiene cada
-      una). Se guarda, y los rayos del perfil también lo siguen.
+    - **Filtrar cargadores:** «Filtrar» tiene tres pestañas. En **«Cargadores»**, la potencia mínima (cualquiera, 22,
+      50, 100, 150, 200 o 300 kW), el voltaje y las **redes**: arriba las que hay en tu ruta, con cuántos cargadores
+      tiene cada una, y debajo las de tu país de la A a la Z (más las que hay en casi toda Europa: Tesla, Ionity, Shell,
+      Lidl); «Ver redes de otros países» enseña el resto. Sin ninguna marcada valen todas. **«Plan de carga»** tiene con
+      cuánto llegar, hasta cuánto cargar, cargar en el destino, la comida, la voz y el navegador, y **«Favoritos y
+      vetados»**, los cargadores que has marcado. Se guarda, y los rayos del perfil también lo siguen.
     - **De dónde salen los cargadores:** en España, del **registro oficial** de puntos de recarga (Ministerio para la
       Transición Ecológica, publicado por la DGT en nap.dgt.es): la potencia y el **voltaje** de cada uno. Se descarga
       en el móvil una vez por semana (unos 3 MB). Lo que falta en el registro (hay operadores que no han dado de alta
@@ -426,15 +429,22 @@ admite.
     - **Cargadores cerca de ti:** «Cerca de mí» (junto a «Filtrar») busca los cargadores a 5, 10, 25 o 50 km de donde
       estás, sin ruta, de más cerca a más lejos: eliges la red («los Wenea cerca de mí») y la potencia mínima, y ves a
       cuánto están, su potencia, su voltaje, los enchufes y los puntos, con «Ir».
-    - **Navegar con Google Maps o Waze:** en «Filtrar» → «Navegar con» (si Waze está instalado). El botón de guiar y
-      los «Ir» abren el elegido. Waze no admite paradas intermedias: «Ir con las paradas» te lleva a la siguiente.
+    - **Navegar con Google Maps o Waze:** en «Filtrar» › «Plan de carga» › «Navegar con» (si Waze está instalado). El
+      botón de guiar y los «Ir» abren el elegido. Waze no admite paradas intermedias: «Ir con las paradas» te lleva a la
+      siguiente.
     - **Plan de carga (gratis, como ABRP):** si no llegas con el margen, la Ruta dice **dónde parar y hasta cuánto
       cargar** entre los cargadores del filtro: el mejor cargador rápido del último tramo al que llegas y solo lo que
       hace falta (el C10 carga más despacio por encima del 50 %: mejor dos paradas cortas que una larga hasta el 100 %).
       Cada parada lleva el km, con cuánto llegas, hasta cuánto cargar y los minutos; la línea de la batería sube en cada
-      parada. «Ir con las paradas» abre Google Maps con ellas (hasta 3). En «Filtrar» eliges con cuánto llegar (10-30 %)
-      y hasta cuánto cargar como mucho (70-100 %); si con algo más del máximo llegas al destino, carga eso en vez de
-      hacer otra parada a pocos km del final. En un REEV no hay plan: el generador pone lo que falte.
+      parada. «Ir con las paradas» abre Google Maps con ellas (hasta 3). En «Filtrar» › «Plan de carga» eliges con
+      cuánto llegar (10-30 %) y hasta cuánto cargar como mucho (70-100 %); si con algo más del máximo llegas al destino,
+      carga eso en vez de hacer otra parada a pocos km del final. En un REEV no hay plan: el generador pone lo que
+      falte.
+    - **Cambiar una parada:** cada parada del plan lleva «Cambiar»: salen los otros cargadores de ese tramo a los que
+      llegas, con cuánto llegas y cuánto cambia el tiempo parado («+5 min parado», «paradas: 1 → 2»). «Usar esta» la
+      fija **para este viaje** (📌) y el plan se rehace desde ella; si el consumo cambia y ya no llegas, elige otra y te
+      avisa. «Quitar mi elección» vuelve a la del plan. Al cambiar de destino se olvida; para preferir siempre un
+      cargador, márcalo con ★.
     - **800 V (C10 de 81,9 kWh):** la batería grande es de 800 V y en los cargadores de 400–500 V carga, pero a la
       mitad. El plan para en los de 800 V (o de 150 kW o más, que casi siempre lo son aunque el registro no lo diga) y
       deja los de 400–500 V de reserva: la lista los marca en ámbar («470 V: tu coche de 800 V carga aquí a la mitad»)
@@ -456,8 +466,8 @@ admite.
       elegidas se mantienen mientras llegues a ellas con margen; si te vas quedando sin batería (o te sobra), el plan
       cambia y **te avisa**: una tarjeta ámbar en el panel del coche (también encima de Android Auto) con «Ir» (Google
       Maps con las paradas nuevas) y «Ruta», el botón «Coche» en ámbar y **un aviso por voz** («Plan de carga cambiado.
-      Gastas un 12 % más de lo previsto. Nueva parada: …»). La voz se quita en «Filtrar» → «Avisar por voz si cambia el
-      plan». Mientras cargas no avisa (lo has decidido tú).
+      Gastas un 12 % más de lo previsto. Nueva parada: …»). La voz se quita en «Filtrar» › «Plan de carga» › «Avisar por
+      voz si cambia el plan». Mientras cargas no avisa (lo has decidido tú).
   - «Conducción»: la próxima maniobra en grande, con una barra que se vacía hasta el giro, los carriles y la maniobra
     de después; la velocidad con la señal del límite, el rumbo, la altitud, la pendiente y el sol hasta la puesta.
   - «Viajes»: el viaje en curso y los guardados, con su recorrido, consumo, desnivel y coste; los km de los últimos 14
@@ -467,8 +477,15 @@ admite.
     vas por el mismo sitio), «En curso» te dice en directo cuánto vas por delante o por detrás de tu mejor vez hasta
     donde estás («Fantasma: 1:20 por detrás de tu mejor vez»), y el viaje más rápido de cada camino repetido lleva
     «Récord de ruta».
-  - «Instrumentos»: velocímetro con el límite y la máxima, fuerzas G con la estela de los últimos segundos y los picos,
+  - «Instrumentos»: velocímetro con **la señal del límite en grande** debajo de la cifra (con un aro ámbar si vas por
+    encima y rojo si pasas de un 10 %) y la máxima, fuerzas G con la estela de los últimos segundos y los picos,
     inclinación y una nota de suavidad (0-100) según los tirones al acelerar, frenar y girar.
+  - **El límite de velocidad** (Conducción e Instrumentos) sale de OpenStreetMap: el de la vía en tu sentido o el de su
+    zona («DE:urban», «AT:rural»…). Donde no lo tiene, se supone el general del país por el tipo de vía (España,
+    Portugal, Alemania, Austria, Suiza, Italia, Francia, Países Bajos, Bélgica y Luxemburgo) y pone «estimado». En la
+    Autobahn sin límite sale la señal de fin de limitación, sin colores; con paneles variables, no sale ninguna. Las
+    carreteras de tus trayectos se guardan en el móvil (60 días): en los de siempre, el límite sale aunque los
+    servidores de OpenStreetMap estén saturados. Si no se sabe, no sale ninguna señal (mejor que una equivocada).
   - «Eficiencia»: la potencia de los últimos 2 minutos (en verde lo que se recupera), el consumo ahora, del viaje y
     medio, en qué se va la energía, el coste del viaje, el CO₂ que no ha salido por un tubo de escape y un consejo.
   - «Estado» (con la cuenta de Leapmotor): la batería, la autonomía, la carga, las presiones, las puertas y el
@@ -504,10 +521,12 @@ admite.
   (**5 minutos** por defecto; se cambia en «Ajustes de imagen» › «Avanzado»). La notificación dice «Esperando al coche ·
   Android Auto en pausa». Si el coche vuelve en ese tiempo, la imagen sale **al instante**, sin desbloquear el móvil ni
   pulsar nada.
-- Pasado «Esperar al coche», Qonecta+ lo cierra todo: Android Auto, su servidor y la conexión. Para volver a usarla,
-  pulsa «Conectar», o déjalo en manos de la conexión automática por Bluetooth. Con el arranque manual del servidor lo
-  cierra todo igual salvo el servidor, que sigue encendido para el próximo viaje ([Sin
-  accesibilidad](#sin-accesibilidad-arranque-manual-del-servidor-de-android-auto)).
+- Pasado «Esperar al coche», Qonecta+ cierra Android Auto y la conexión. **El servidor de Android Auto se queda
+  encendido para el próximo viaje**: así Android Auto arranca aunque el móvil esté bloqueado. Se apaga solo si el móvil
+  se conecta a una Wi-Fi sin contraseña (cafeterías, áreas de servicio…), o al cerrar si ya estás en una; lo cambia
+  Ajustes › «Conexión» › «Servidor de Android Auto encendido entre viajes». Con el arranque manual del servidor se queda
+  siempre encendido ([Sin accesibilidad](#sin-accesibilidad-arranque-manual-del-servidor-de-android-auto)). Para volver
+  a usar Qonecta+, pulsa «Conectar», o déjalo en manos de la conexión automática por Bluetooth.
 - Si pulsas «Conectar» y en **5 minutos** (o «Esperar al coche», si es más) no aparece ningún coche, Qonecta+ se para
   sola. Mientras el coche se siga anunciando, aunque no llegue a conectar, la espera vuelve a empezar.
 
@@ -677,7 +696,7 @@ Todo está en el menú ⚙ de la pantalla principal, un panel que sube desde aba
 «Diagnóstico». En medio, grupos que se despliegan al tocarlos (cada uno dice cuántas opciones tiene):
 
 - **Coche:** «Comprobación», «Ajustes de imagen» y «Datos del coche».
-- **Contenido del modo extendido** (solo en «Auto extendido»): «Lista de TV», «Lista de radio» y «Marcadores web».
+- **Contenido del modo extendido** (solo en «Auto extendido»): «Lista de TV», «Lista de radio», «Marcadores web» y «Home Assistant».
 - **Juegos** (solo en «Auto extendido»): «Carpeta de juegos».
 - **App:** «Buscar versión nueva», «Idioma», «Añadir widget a la pantalla de inicio» y «Añadir botón a los ajustes
   rápidos» (Android 13+).
@@ -738,6 +757,12 @@ Si estás conectado, al guardar otro perfil el coche y Android Auto se reconecta
 - «Avanzado ▾» › «Arranque del servidor de Android Auto»: «Automático (accesibilidad) · Recomendado» o «Manual (sin
   accesibilidad)» (sección 3, [Sin accesibilidad](#sin-accesibilidad-arranque-manual-del-servidor-de-android-auto)).
   Vale en el acto.
+- Ajustes › «Conexión» › «Servidor de Android Auto encendido entre viajes» (solo con el arranque automático; viene
+  activado): el servidor no se apaga al terminar, y el viaje siguiente arranca Android Auto con el móvil bloqueado
+  (encenderlo necesita los ajustes de Android Auto, que con el móvil bloqueado no se pueden manejar). Se apaga solo en
+  una Wi-Fi sin contraseña (Android 12 o superior; en los anteriores no se puede saber y sigue encendido). Al reiniciar
+  el móvil o actualizarse Android Auto se apaga, y la primera vez vuelve a salir «Desbloquea el móvil para iniciar
+  Android Auto». Desactivado: se apaga al terminar cada viaje, como antes.
 - El resto de «Avanzado» (fps, kbps, ancho, alto, perfil H.264, optimizaciones de latencia, freno) es para pruebas.
   Déjalo vacío o como viene.
 
@@ -779,8 +804,11 @@ Android 12 o anterior, la app usa el idioma del sistema.
 
 ### «Lista de TV» y «Lista de radio» («Auto extendido»)
 
-Pega la URL de una lista M3U o pulsa «Elegir archivo». Si no pones lista de radio, en el coche salen las emisoras
-populares.
+Pega la URL de una lista M3U (en la de TV, también la JSON de TDTChannels: `https://www.tdtchannels.com/lists/tv.json`)
+y pulsa **«Añadir lista»**: aparece arriba con un ✓. Si cierras con la URL pegada sin pulsarlo, se añade igual. También
+puedes pulsar «Elegir archivo». Si no pones lista de radio, en el coche salen las emisoras populares: las más
+escuchadas de tu país (el de la región del móvil o, si no la dice, el de la red móvil). En el coche, Radio ›
+«Populares» › «Cambiar país» elige otro, y «Automático» vuelve al tuyo.
 
 ### «Mi música» (Radio, «Auto extendido»)
 
@@ -789,10 +817,24 @@ su biblioteca: carpeta Música, Descargas o un USB), por artista y álbum. Toca 
 «Aleatorio» las mezcla. Suena como la radio: sigue al cambiar de pantalla, con el mini reproductor del panel y los
 mandos del volante. Necesita el permiso «Fotos, vídeos, música y ubicación» (Android 13 o superior).
 
+Si la radio o «Mi música» sonaba cuando terminó la conexión con el coche (al apagarlo, por ejemplo), sigue sola al
+volver a conectar; una canción, por donde iba. Si la habías parado, no. Se quita en Ajustes › «Pantalla del coche» ›
+«Seguir con la radio al conectar».
+
 ### «Marcadores web» («Auto extendido»)
 
 Los accesos de la pantalla «Web» del coche (de serie, YouTube, Google, Wikipedia y Twitch). Añade los tuyos con
 nombre y dirección, quítalos o cámbialos de orden con las flechas; «Los de serie» los deja como venían.
+
+### «Home Assistant» («Auto extendido»)
+
+Si tienes Home Assistant, pon la dirección de fuera de tu casa (Nabu Casa o tu dominio: en el coche el móvil va con
+datos) y un token de acceso de larga duración (Home Assistant › tu perfil › Seguridad), y pulsa «Probar y guardar». En
+el coche, el botón **«Home Assistant»** del panel lateral abre **tu panel completo**, con sus tarjetas, sin volver a
+iniciar sesión (usa el mismo token). En «Mi panel en el coche» eliges otro panel (su ruta, como `lovelace/coche`, o pega
+su dirección); vacío, el de siempre. Si además eliges elementos en el móvil (luces, enchufes, garaje, persianas,
+escenas, sensores), «‹ Mis botones» los enseña en botones grandes y «▦ Mi panel» vuelve al panel; se recuerda lo último
+que viste. El token se guarda cifrado; mientras el panel está abierto lo usa su página, y al cerrarlo se borra de ella.
 
 ### «Acuario» (Juegos › Para la espera)
 
