@@ -406,6 +406,11 @@ Kabel meldet (`USB_STATE`), ob das Fahrzeug das Handy in den Zubehörmodus gesch
   Ansicht wieder allein. Die Teilung bleibt, solange du mit dem Fahrzeug verbunden bist. Beim ersten Mal pro Verbindung
   erscheint ein Hinweis, den du bestätigen musst: Es wird empfohlen, sie nur bei stehendem Fahrzeug zu nutzen, und die
   Nutzung erfolgt auf eigene Verantwortung. Beim T03 gibt es sie nicht: Sein Bildschirm ist zu schmal zum Teilen.
+- **Tastatur im Fahrzeug** (Web, Zielsuche, Namen): oben Ziffern, unten „#+=“ mit allen Sonderzeichen (jedes Passwort
+  lässt sich eingeben) und „äé“ mit Umlauten und Akzenten (ä ö ü ß, á é í ó ú, ç, ã…; nach einem Zeichen geht es von
+  selbst zurück zu den Buchstaben). ⇧ schreibt den nächsten Buchstaben groß; zweimal hintereinander getippt bleibt die
+  Großschreibung (⇪). ⌫ gedrückt halten löscht weiter. Über den Tasten siehst du, was du tippst, auch in Feldern von
+  Webseiten; bei einem Passwort Punkte und kurz den letzten Buchstaben.
 - **Bereich „Fahrzeug“** (geschätzt mit den Sensoren des Handys und offenen Diensten; mit dem Leapmotor-Konto auch mit
   echten Fahrzeugdaten: siehe [Echte Fahrzeugdaten](#echte-fahrzeugdaten-leapmotor-konto)):
   - „Route“: Ziel, Ankunft, voraussichtliche Energie und voraussichtlicher Verbrauch; das Höhenprofil, nach Steigung
@@ -1094,8 +1099,9 @@ neu, verbinde es einmal von Hand und prüfe in den Bluetooth-Einstellungen des H
 vertrauenswürdiges Gerät eingetragen ist bzw. sich automatisch verbinden darf.
 
 **Kann ich das Projekt unterstützen?**
-Qonecta+ ist kostenlos und werbefrei. Wenn es dir hilft, kannst du mir per [PayPal](https://www.paypal.me/CharlysEV) einen Kaffee spendieren;
-auch in der App unter „Über und Danksagungen“. Danke!
+Qonecta+ ist kostenlos und werbefrei. Wenn es dir hilft, kannst du mir über [Ko-fi](https://ko-fi.com/charlysev) (mit
+Karte oder PayPal) oder per [PayPal](https://www.paypal.me/CharlysEV) einen Kaffee spendieren; auch in der App unter
+„Über und Danksagungen“. Danke!
 
 **Wie melde ich einen Fehler oder schlage etwas vor?**
 Im Thread des LPMFF-Forums: [lpmff.de/thread/3341-qonecta-app](https://www.lpmff.de/thread/3341-qonecta-app/). Bei

@@ -389,6 +389,11 @@ supporta.
   nuovo da sola. Dura finché resti collegato all'auto. La prima volta di ogni collegamento compare un avviso da
   accettare: si consiglia di usarlo a veicolo fermo, e lo usi sotto la tua responsabilità. Sulla T03 non c'è: il suo
   schermo è troppo stretto per dividerlo.
+- **Tastiera dell'auto** (Web, ricerca della destinazione, nomi): numeri in alto e, in basso, «#+=» con tutti i simboli
+  (si può scrivere qualsiasi password) e «äé» con accenti e dieresi (ä ö ü ß, á é í ó ú, ç, ã…; dopo uno torna da sola
+  alle lettere). ⇧ mette in maiuscolo la lettera successiva; con due tocchi di fila resta fisso (⇪). Tenendo premuto ⌫
+  continua a cancellare. Sopra i tasti vedi ciò che scrivi, anche nei campi delle pagine web; in una password, puntini e
+  per un attimo l'ultima lettera.
 - **Sezione «Veicolo»** (stime dai sensori del telefono e da servizi aperti; con l'account Leapmotor, anche dati reali
   dell'auto: vedi [Dati reali dell'auto](#dati-reali-dellauto-account-leapmotor)):
   - «Percorso»: destinazione, arrivo, energia e consumo previsti; il profilo altimetrico colorato in base alla pendenza
@@ -993,8 +998,8 @@ Lo fa Android e un'app non può impedirlo. Dalla 0.2.60, durante il gioco il tel
 al minimo; toccare il telefono lo toglie.
 
 **Posso sostenere il progetto?**
-Qonecta+ è gratuito e senza pubblicità. Se ti è utile, puoi offrirmi un caffè con [PayPal](https://www.paypal.me/CharlysEV); anche dall'app,
-in «Informazioni e crediti». Grazie!
+Qonecta+ è gratuito e senza pubblicità. Se ti è utile, puoi offrirmi un caffè su [Ko-fi](https://ko-fi.com/charlysev)
+(carta o PayPal) o con [PayPal](https://www.paypal.me/CharlysEV); anche dall'app, in «Informazioni e crediti». Grazie!
 
 **Come chiedo aiuto?**
 Esporta il registro (sezione 8) e racconta cosa è successo e a che ora. Non contiene password, indirizzi né ciò che
