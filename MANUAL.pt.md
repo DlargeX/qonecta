@@ -69,7 +69,7 @@ Há dois modos à escolha:
 |---|---|
 | Carro | Leapmotor C10 com a aplicação de espelhamento (projeção do telemóvel) no ecrã. Também funciona num **T03** com o Android Auto normal (confirmado por um utilizador). |
 | Telemóvel | Android com o **Android Auto** instalado. Recomenda-se **Android 10 ou superior**; escolher o idioma da aplicação precisa do Android 13. |
-| Testado em | Samsung Galaxy **S25 Ultra** com **Android 16** e Android Auto 17.7. Outros telemóveis podem funcionar, mas não foram testados. |
+| Testado em | Samsung Galaxy **S25 Ultra** com **Android 16** e Android Auto 17.7 e 17.9. Outros telemóveis podem funcionar, mas não foram testados. |
 | Android Auto 17.4 ou superior | É preciso ativar uma vez o **modo de programador** do Android Auto e o serviço de **acessibilidade** do Qonecta+. A aplicação guia-o (secção 3). Com versões anteriores não é preciso. |
 | Internet (opcional) | Só para funções do «Auto estendido», como rotas, meteorologia ou rádio. |
 
@@ -287,7 +287,8 @@ testado:
 | Android Auto | Estado |
 |---|---|
 | 17.7.x | **Testada** com o Qonecta+ (outubro de 2026) |
-| 17.8, 17.9 e posteriores | **Ainda não testadas.** Outros projetos (Open Headunit) relatam problemas: com a 17.8 a ligação corta-se ao fim de 1-2 s; com a 17.9, o arranque automático do servidor deixa de funcionar |
+| 17.9.x | **Testada** com o Qonecta+ (outubro de 2026): dezenas de viagens por Wi-Fi Direct e por cabo sem problemas |
+| 17.8, 18 e posteriores | **Ainda não testadas.** Outros projetos (Open Headunit) relatam que com a 17.8 a ligação corta-se ao fim de 1-2 s |
 
 A «Verificação» mostra-o na linha «Android Auto 17.x» (testada / ainda não testada), e o registo anota-o ao arrancar
 (`androidAuto=…`) e em cada sessão (coluna `aa_version` de `sessions.csv`).
@@ -310,7 +311,7 @@ Se uma versão nova deixar de funcionar:
 > [!WARNING]
 > **Voltar a uma versão anterior do Android Auto não é «Desinstalar atualizações».** Em muitos telemóveis a cópia de
 > fábrica do Android Auto é só um esqueleto (1.x) que não serve para o Qonecta+: é preciso instalar à mão o APK da
-> versão testada (17.7.x) que corresponda ao seu telemóvel (arquitetura e versão do Android) e depois desativar a
+> versão testada (17.9.x ou 17.7.x) que corresponda ao seu telemóvel (arquitetura e versão do Android) e depois desativar a
 > atualização automática, ou a Play Store volta a atualizá-lo.
 
 ---
@@ -431,7 +432,7 @@ admite.
       Transição Ecológica, publicado pela DGT em nap.dgt.es): a potência e a **tensão** de cada um. É descarregado no
       telemóvel uma vez por semana (cerca de 3 MB). O que falta no registo (há operadores que não registaram todos os
       seus pontos) completa-se com o OpenStreetMap, sem repetir os que já lá estão; fora de Espanha, tudo vem do
-      OpenStreetMap, onde a potência ou a rede podem faltar. **Na Alemanha**, os rápidos vêm do registo oficial da Bundesnetzagentur (Ladesäulenregister), com a potência e as fichas (sem tensão: usa-se a típica de cada rede). Ocupa uns 55 MB, por isso só se descarrega com Wi-Fi, uma vez por mês e só nos telemóveis que planearam alguma rota pela Alemanha; entretanto, OpenStreetMap. A app escolhe o registo pelo sítio por onde passa a rota, não pelo idioma do telemóvel. **«Carregadores ao longo da rota»** abre a lista com o
+      OpenStreetMap, onde a potência ou a rede podem faltar. **Na Alemanha**, os rápidos vêm do registo oficial da Bundesnetzagentur (Ladesäulenregister), com a potência e as fichas (sem tensão: usa-se a típica de cada rede). Ocupa uns 55 MB, por isso só se descarrega com Wi-Fi, uma vez por mês e só nos telemóveis que planearam alguma rota pela Alemanha; entretanto, OpenStreetMap. **Na Suíça**, vêm do Serviço Federal de Energia (ich-tanke-strom.ch), com a potência e **quantos pontos estão livres em direto**: «Livres agora: 3 de 4» a verde, «todos ocupados» a âmbar ou «fora de serviço» a vermelho, na lista, em «Perto de mim» e nas paragens do plano; o plano não usa um local com todos os pontos fora de serviço. Pesa pouco (~1 MB): descarrega-se uma vez por semana quando uma rota passa pela Suíça ou procura carregadores lá, e o estado consulta-se a cada 3 minutos entretanto. A app escolhe o registo pelo sítio por onde passa a rota, não pelo idioma do telemóvel. **«Carregadores ao longo da rota»** abre a lista com o
       distintivo de cada rede, o km, a potência, a tensão («350 kW · 920 V») e as fichas.
     - **Carregadores perto de si:** «Perto de mim» (ao lado de «Filtrar») procura os carregadores a 5, 10, 25 ou 50 km
       de onde está, sem rota, do mais perto ao mais longe: escolhe a rede («os Wenea perto de mim») e a potência mínima,
@@ -486,7 +487,7 @@ admite.
     do seu melhor tempo»), e a viagem mais rápida de cada caminho repetido leva «Recorde da rota».
   - «Instrumentos»: velocímetro com **o sinal do limite em grande** por baixo do número (com um anel âmbar se for acima
     e vermelho se passar dos 10 %) e a máxima, forças G com o rasto dos últimos segundos e os picos, inclinação e uma
-    nota de suavidade (0-100) pelos solavancos ao acelerar, travar e virar.
+    nota de suavidade (0-100) pelos solavancos ao acelerar, travar e virar. Por baixo dos km/h, o **cronómetro 0-50 e 0-100 km/h**: arranca sozinho quando sai de parado e, com o GPS do telemóvel, acerta a uma ou duas décimas.
   - **O limite de velocidade** (Condução e Instrumentos) vem do OpenStreetMap: o da via no seu sentido ou o da sua zona
     («DE:urban», «AT:rural»…). Onde falta, assume-se o limite geral do país para o tipo de via (Espanha, Portugal,
     Alemanha, Áustria, Suíça, Itália, França, Países Baixos, Bélgica e Luxemburgo), com «estimado». Na Autobahn sem
@@ -786,6 +787,11 @@ das viagens; 0,20 por omissão), e ver a ligação e o motor em uso. Use-o só c
 5,5 l/100 km por omissão). Com eles saem a poupança face a um carro a combustão (Eficiência, relatório do mês) e o CO₂
 que evita; no REEV, a gasolina que o gerador gasta conta sempre ao preço da gasolina.
 
+«Moeda» (no telemóvel, nas Definições, por cima dos preços): a dos preços e custos. Em «Automática», a do país do seu
+cartão SIM, que não muda em viagem (com um cartão português na Suíça, continua em euros); ou escolhe uma: euro, franco
+suíço, libra, coroas dinamarquesa, sueca, norueguesa e islandesa, zlóti, coroa checa, forinte ou leu. Ao mudá-la, os
+seus preços são convertidos com uma taxa aproximada: reveja-os.
+
 «Cor do painel lateral»: «Automático» (escuro à noite e claro de dia, como o ecrã do carro) ou uma de 16 cores fixas,
 que fica igual de dia e de noite. Aplica-se logo, e o texto do painel passa a claro ou escuro para se ler.
 
@@ -887,6 +893,13 @@ estendido»:
   dos outros, ou com o aviso do próprio carro); as portas e a mala abertas (abertas no modelo), o fecho, o
   conta-quilómetros e de quando é o dado. A nuvem não indica as janelas. O 3D só se desenha enquanto o move (não aquece o
   telemóvel); sem WebGL aparece o carro visto de cima.
+- **«O meu carro»** (quarto separador da app do telemóvel, 0.3.10): o seu carro como na app da Leapmotor, mas aqui. Em
+  cima a autonomia, a bateria e se está trancado; no meio **o C10 em 3D** (roda com o dedo; portas e mala abertas
+  abrem no modelo); em baixo, a fila de ordens **Abrir · Fechar · Mala · Clima · Localizar** (as mesmas do widget
+  «Carro», com confirmação: precisam do PIN do carro guardado em «Dados do carro» e das ordens ativadas; sem isso a
+  fila aparece apagada) os cartões **«Carregamento»** (como o centro de carregamento da app da Leapmotor: a % sobre uma bateria desenhada, o estado do carregamento e os últimos carregamentos que o Qonecta+ viu, com a % e o carregador) e **«Consumo»** (Semana / Mês / Ano: km, energia, consumo aos 100 km e a repartição Condução / Climatização / Outros, os mesmos valores da app da Leapmotor, e as últimas viagens; «Todas as viagens ›» e «Todos os carregamentos ›» levam a Viagens), e dois cartões que se abrem: **«Clima»** (temperatura do habitáculo, o clima ligado daqui e o
+  botão do clima) e **«Estado»** (as quatro pressões, a âmbar a roda baixa ou com aviso; portas e mala; temperatura da
+  bateria; conta-quilómetros). Só lê a nuvem enquanto o separador está à vista.
 - **C10 REEV (autonomia alargada):** o Qonecta+ reconhece-o sozinho (o carro envia o depósito) e passa a bateria a
   28,4 kWh. Em «Estado», o **depósito** (%, litros exatos, autonomia com gasolina e autonomia total); em «Viagens», os
   **litros** de cada viagem e os L/100 km (com o gerador parado, «0 L: tudo elétrico»), e o custo com a gasolina; em
@@ -928,7 +941,7 @@ do carro» desativa-o sem apagar nada.
 
 **Privacidade e segurança.**
 
-- Só de leitura, com uma exceção opcional: as **ordens do widget «Carro»** (trancar, destrancar, bagageira,
+- Só de leitura, com uma exceção opcional: as **ordens do widget «Carro» e do separador «O meu carro»** (trancar, destrancar, bagageira,
   climatização e localizar), e só se guardar o PIN do carro em «Dados do carro» → «5 · PIN do carro» e aí ativar as
   ordens a partir do widget (o PIN é o da app da Leapmotor; fica cifrado no telemóvel e nunca vai para o registo). Sem
   PIN, o Qonecta+ **nunca envia ordens ao carro**, e não existe nenhuma outra (nem carga nem limites). Cada ordem é
@@ -1191,7 +1204,7 @@ Pode pedir ajuda na página do projeto no GitHub: [CharlysEV/qonecta](https://gi
 - Dados online: mapas, estradas e carregadores © colaboradores do **OpenStreetMap** (ODbL), através do Overpass, OSRM,
   Photon (komoot) e Nominatim; tempo e altitude da **Open-Meteo.com** (CC BY 4.0) e Open Topo Data; carregadores em
   Espanha do registo do MITECO publicado pela DGT e na Alemanha do Ladesäulenregister da **Bundesnetzagentur**
-  (CC BY 4.0); rádio do **radio-browser.info**; lugares do Guia da estrada da **Wikipedia** (CC BY-SA); letras do
+  (CC BY 4.0) e na Suíça do **Serviço Federal de Energia** (ich-tanke-strom.ch, dados abertos); rádio do **radio-browser.info**; lugares do Guia da estrada da **Wikipedia** (CC BY-SA); letras do
   Karaoke do **LRCLIB**.
 - Emuladores: Nestopia, halfNES, bsnes, ClownMDEmu e PCSX ReARMed, cada um com a sua licença. Tudo no
   [NOTICE](NOTICE).

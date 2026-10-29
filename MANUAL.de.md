@@ -55,7 +55,7 @@ Du kannst zwischen zwei Modi wählen:
 |---|---|
 | Fahrzeug | Leapmotor C10 mit seiner Spiegelungsapp (Handy-Projektion) auf dem Display. Funktioniert auch in einem **T03** mit normalem Android Auto (von einem Nutzer bestätigt). |
 | Handy | Android mit installiertem **Android Auto**. Empfohlen ist **Android 10 oder neuer**; um die Sprache der App zu wählen, brauchst du Android 13. |
-| Getestet mit | Samsung Galaxy **S25 Ultra** mit **Android 16** und Android Auto 17.7. Andere Handys können funktionieren, sind aber nicht getestet. |
+| Getestet mit | Samsung Galaxy **S25 Ultra** mit **Android 16** und Android Auto 17.7 und 17.9. Andere Handys können funktionieren, sind aber nicht getestet. |
 | Android Auto 17.4 oder neuer | Du musst einmalig den **Entwicklermodus** von Android Auto und die **Bedienungshilfe** von Qonecta+ aktivieren. Die App führt dich durch (Abschnitt 3). Bei älteren Versionen ist das nicht nötig. |
 | Internet (optional) | Nur für Funktionen von „Auto erweitert“ wie Routen, Wetter oder Radio. |
 
@@ -281,7 +281,8 @@ diesen Versionen wurde getestet:
 | Android Auto | Status |
 |---|---|
 | 17.7.x | Mit Qonecta+ **getestet** (Oktober 2026) |
-| 17.8, 17.9 und neuer | **Noch nicht getestet.** Andere Projekte (Open Headunit) berichten von Problemen: Mit 17.8 bricht die Verbindung nach 1–2 s ab; mit 17.9 funktioniert der automatische Start des Servers nicht mehr |
+| 17.9.x | Mit Qonecta+ **getestet** (Oktober 2026): Dutzende Fahrten per Wi-Fi Direct und Kabel ohne Probleme |
+| 17.8, 18 und neuer | **Noch nicht getestet.** Andere Projekte (Open Headunit) berichten, dass mit 17.8 die Verbindung nach 1–2 s abbricht |
 
 „Voraussetzungen prüfen“ zeigt das in der Zeile „Android Auto 17.x“ (getestet / noch nicht getestet), und das Log hält es
 beim Start (`androidAuto=…`) und bei jeder Sitzung fest (Spalte `aa_version` in `sessions.csv`).
@@ -306,7 +307,7 @@ Wenn eine neue Version nicht mehr funktioniert:
 > [!WARNING]
 > **Zu einer älteren Android-Auto-Version zurückzukehren heißt nicht „Updates deinstallieren“.** Auf vielen Handys ist
 > die vorinstallierte Android-Auto-Version nur ein Grundgerüst (1.x), das für Qonecta+ nicht taugt: Du musst die APK der
-> getesteten Version (17.7.x), die zu deinem Handy passt (Architektur und Android-Version), von Hand installieren und
+> getesteten Version (17.9.x oder 17.7.x), die zu deinem Handy passt (Architektur und Android-Version), von Hand installieren und
 > danach das automatische Update ausschalten, sonst spielt der Play Store sie wieder auf.
 
 ---
@@ -442,7 +443,7 @@ Kabel meldet (`USB_STATE`), ob das Fahrzeug das Handy in den Zubehörmodus gesch
       kommen die Schnelllader aus dem offiziellen Register der Bundesnetzagentur (Ladesäulenregister), mit Leistung und
       Steckern (ohne Spannung: Es wird die typische des jeweiligen Ladenetzes verwendet). Es ist etwa 55 MB groß, deshalb
       wird es nur per WLAN geladen, einmal im Monat und nur auf Handys, die schon eine Route durch Deutschland geplant
-      haben; bis dahin gilt OpenStreetMap. Die App wählt das Register danach, wo die Route verläuft, nicht nach der
+      haben; bis dahin gilt OpenStreetMap. **In der Schweiz** kommen sie vom Bundesamt für Energie (ich-tanke-strom.ch), mit Leistung und **live, wie viele Ladepunkte frei sind**: „Jetzt frei: 3 von 4“ in Grün, „alle belegt“ in Gelb oder „außer Betrieb“ in Rot – in der Liste, bei „Ladestationen in der Nähe“ und bei den Stopps des Ladeplans; ein Standort, dessen Ladepunkte alle außer Betrieb sind, kommt nicht in den Plan. Die Daten sind klein (~1 MB): Sie werden einmal pro Woche geladen, wenn eine Route durch die Schweiz führt oder du dort Ladestationen suchst, und der Status wird währenddessen alle 3 Minuten abgefragt. Die App wählt das Register danach, wo die Route verläuft, nicht nach der
       Sprache des Handys. **„Ladestationen an der Route“** öffnet die Liste mit dem Kennzeichen jedes Ladenetzes, dem
       km, der Leistung, der Spannung („350 kW · 920 V“) und den Steckern.
     - **Ladestationen in deiner Nähe:** „In der Nähe“ (neben „Filter“) sucht Ladestationen im Umkreis von 5, 10, 25
@@ -507,7 +508,7 @@ Kabel meldet (`USB_STATE`), ob das Fahrzeug das Handy in den Zubehörmodus gesch
   - „Instrumente“: Tacho mit **großem Tempolimit-Schild** unter der Zahl (mit gelbem Ring, wenn du schneller fährst,
     und rotem ab gut 10 % darüber) und Höchstgeschwindigkeit, G-Kräfte mit der Spur der letzten Sekunden und den
     Spitzenwerten, Neigung und eine Note für die Sanftheit (0–100) nach dem Rucken beim Beschleunigen, Bremsen und
-    Lenken.
+    Lenken. Unter den km/h die **Stoppuhr 0–50 und 0–100 km/h**: Sie startet von selbst, wenn du aus dem Stand losfährst, und ist mit dem GPS des Handys auf ein bis zwei Zehntel genau.
   - **Das Tempolimit** („Fahren“ und „Instrumente“) kommt aus OpenStreetMap: das der Straße in deiner Fahrtrichtung oder
     das ihrer Zone („DE:urban“, „AT:rural“ …). Fehlt es dort, nimmt die App die allgemeine Regel des Landes für den
     Straßentyp an (Spanien, Portugal, Deutschland, Österreich, Schweiz, Italien, Frankreich, Niederlande, Belgien und
@@ -833,6 +834,12 @@ Vergleichsautos“ (standardmäßig 6,5 und 5,5 l/100 km). Daraus ergeben sich d
 (Effizienz, Monatsbericht) und das eingesparte CO₂; beim REEV wird das Benzin des Generators immer zum Benzinpreis
 gerechnet.
 
+„Währung“ (auf dem Handy in den Einstellungen, über den Preisen): die für Preise und Kosten. „Automatisch“ nimmt die
+des Landes deiner SIM-Karte, die sich auf Reisen nicht ändert (mit einer deutschen SIM in der Schweiz bleibt es bei
+Euro); oder du wählst eine: Euro, Schweizer Franken, Pfund, Dänische, Schwedische, Norwegische und Isländische Krone,
+Złoty, Tschechische Krone, Forint oder Leu. Beim Wechsel werden deine Preise mit einem ungefähren Kurs umgerechnet –
+prüf sie kurz.
+
 „Farbe der Seitenleiste“: „Automatisch“ (nachts dunkel und tagsüber hell, wie das Fahrzeugdisplay) oder eine von 16
 festen Farben, die tagsüber und nachts gleich bleibt. Gilt sofort, und der Text der Seitenleiste wird hell oder dunkel,
 damit er lesbar bleibt.
@@ -956,6 +963,14 @@ Kilometerstand) und nutzt ihn in „Auto erweitert“:
   selbst); offene Türen und Kofferraum (in der Zeichnung geöffnet), die Verriegelung, den Kilometerstand und wie alt
   die Daten sind. Die Fenster liefert die Cloud nicht. Das 3D-Modell wird nur gezeichnet, während du es bewegst (das
   Handy wird dabei nicht warm); ohne WebGL erscheint das Fahrzeug von oben.
+- **„Mein Auto“** (vierter Reiter der Handy-App, 0.3.10): dein Auto wie in der Leapmotor-App, nur hier. Oben
+  Reichweite, Akku und ob es verriegelt ist; in der Mitte **der C10 in 3D** (mit dem Finger drehen; offene Türen und
+  Kofferraum sind im Modell offen); darunter die Befehlsreihe **Entriegeln · Verriegeln · Kofferraum · Klima ·
+  Finden** (dieselben wie im Widget „Auto“, mit Bestätigung: Sie brauchen die in „Fahrzeugdaten“ gespeicherte PIN des
+  Autos und eingeschaltete Befehle; sonst ist die Reihe ausgegraut) die Karten **„Laden“** (wie das Ladezentrum der Leapmotor-App: der Akkustand über einer gezeichneten Batterie, der Ladezustand und die letzten Ladevorgänge, die Qonecta+ gesehen hat, mit % und Ladesäule) und **„Verbrauch“** (Woche / Monat / Jahr: km, Energie, Verbrauch pro 100 km und die Aufteilung Fahren / Klima / Sonstiges, dieselben Werte wie in der Leapmotor-App, und die letzten Fahrten; „Alle Fahrten ›“ und „Alle Ladevorgänge ›“ führen zu „Fahrten“), und zwei aufklappbare Karten: **„Klima“**
+  (Innenraumtemperatur, das von hier eingeschaltete Klima und die Klima-Taste) und **„Zustand“** (die vier
+  Reifendrücke, gelb bei zu wenig Druck oder Warnung; Türen und Kofferraum; Akkutemperatur; Kilometerstand). Die Cloud
+  wird nur gelesen, solange der Reiter sichtbar ist.
 - **C10 REEV (mit Range Extender):** Qonecta+ erkennt ihn von selbst (das Fahrzeug meldet seinen Tank) und stellt den
   Akku auf 28,4 kWh um. In „Status“ der **Tank** (%, genaue Liter, Reichweite mit Benzin und Gesamtreichweite); in
   „Fahrten“ die **Liter** jeder Fahrt und die L/100 km (bei stehendem Generator „0 L Benzin: rein elektrisch“) sowie die
@@ -1001,7 +1016,7 @@ auf. „Echte Fahrzeugdaten nutzen“ schaltet es ab, ohne etwas zu löschen.
 
 **Datenschutz und Sicherheit.**
 
-- Nur lesend, mit einer optionalen Ausnahme: die **Befehle des Widgets „Auto“** (verriegeln, entriegeln, Kofferraum,
+- Nur lesend, mit einer optionalen Ausnahme: die **Befehle des Widgets „Auto“ und des Reiters „Mein Auto“** (verriegeln, entriegeln, Kofferraum,
   Klima und finden), und nur, wenn du die PIN des Fahrzeugs in „Fahrzeugdaten“ → „5 · PIN des Autos“ speicherst und dort
   die Befehle über das Widget einschaltest (es ist die PIN der Leapmotor-App; sie wird verschlüsselt auf dem Handy
   gespeichert und landet nie im Log). Ohne PIN **sendet Qonecta+ nie Befehle an das Fahrzeug**, und andere Befehle gibt
@@ -1310,7 +1325,7 @@ Hilfe bekommst du auch auf der Projektseite bei GitHub: [CharlysEV/qonecta](http
 - Online-Daten: Karten, Straßen und Ladestationen © **OpenStreetMap**-Mitwirkende (ODbL), mit Overpass, OSRM, Photon
   (komoot) und Nominatim; Wetter und Höhendaten von **Open-Meteo.com** (CC BY 4.0) und Open Topo Data; Ladestationen in
   Spanien aus dem Register des MITECO, veröffentlicht von der DGT, und in Deutschland aus dem Ladesäulenregister der
-  **Bundesnetzagentur** (CC BY 4.0); Radio von **radio-browser.info**; Orte im Reiseführer aus der **Wikipedia**
+  **Bundesnetzagentur** (CC BY 4.0) und in der Schweiz vom **Bundesamt für Energie** (ich-tanke-strom.ch, Open Data); Radio von **radio-browser.info**; Orte im Reiseführer aus der **Wikipedia**
   (CC BY-SA); Liedtexte für Karaoke von **LRCLIB**.
 - Emulatoren: Nestopia, halfNES, bsnes, ClownMDEmu und PCSX ReARMed, jeweils mit eigener Lizenz. Alles Weitere in
   [NOTICE](NOTICE).

@@ -52,7 +52,7 @@ Ci sono due modalità:
 |---|---|
 | Auto | Leapmotor C10 con la sua app di mirroring (proiezione del telefono) sullo schermo. Funziona anche su una **T03** con Android Auto normale (confermato da un utente). |
 | Telefono | Android con **Android Auto** installato. È consigliato **Android 10 o successivo**; per scegliere la lingua dell'app serve Android 13. |
-| Provato su | Samsung Galaxy **S25 Ultra** con **Android 16** e Android Auto 17.7. Altri telefoni potrebbero funzionare, ma non sono stati provati. |
+| Provato su | Samsung Galaxy **S25 Ultra** con **Android 16** e Android Auto 17.7 e 17.9. Altri telefoni potrebbero funzionare, ma non sono stati provati. |
 | Android Auto 17.4 o successivo | Devi attivare una volta la **modalità sviluppatore** di Android Auto e il servizio di **accessibilità** di Qonecta+. L'app ti guida (sezione 3). Con le versioni precedenti non serve nessuna delle due. |
 | Internet (facoltativo) | Solo per le funzioni di «Auto esteso» come percorsi, meteo o radio. |
 
@@ -273,7 +273,8 @@ provato:
 | Android Auto | Stato |
 |---|---|
 | 17.7.x | **Provata** con Qonecta+ (ottobre 2026) |
-| 17.8, 17.9 e successive | **Non ancora provate.** Altri progetti (Open Headunit) segnalano problemi: con la 17.8 la connessione cade dopo 1-2 s; con la 17.9 l'avvio automatico del server smette di funzionare |
+| 17.9.x | **Provata** con Qonecta+ (ottobre 2026): decine di viaggi via Wi-Fi Direct e via cavo senza problemi |
+| 17.8, 18 e successive | **Non ancora provate.** Altri progetti (Open Headunit) segnalano che con la 17.8 la connessione cade dopo 1-2 s |
 
 La «Verifica requisiti» lo indica nella riga «Android Auto 17.x» (provata / non ancora provata), e il log lo registra
 all'avvio (`androidAuto=…`) e per ogni sessione (colonna `aa_version` di `sessions.csv`).
@@ -296,7 +297,7 @@ Se una nuova versione smette di funzionare:
 > [!WARNING]
 > **Tornare a una versione precedente di Android Auto non è «Disinstalla aggiornamenti».** Su molti telefoni la copia di
 > fabbrica di Android Auto è solo uno scheletro (1.x) che non serve a Qonecta+: devi installare a mano l'APK della
-> versione provata (17.7.x) adatta al tuo telefono (architettura e versione di Android) e poi disattivare
+> versione provata (17.9.x o 17.7.x) adatta al tuo telefono (architettura e versione di Android) e poi disattivare
 > l'aggiornamento automatico, altrimenti il Play Store la aggiornerà di nuovo.
 
 ---
@@ -421,7 +422,7 @@ supporta.
       Transizione Ecologica, pubblicato dalla DGT su nap.dgt.es): potenza e **tensione** di ognuna. Si scarica sul
       telefono una volta alla settimana (circa 3 MB). Quello che manca nel registro (alcuni operatori non hanno
       registrato tutti i loro punti) si completa con OpenStreetMap, senza ripetere quelle già presenti; fuori dalla
-      Spagna, tutto viene da OpenStreetMap, dove potenza o operatore possono mancare. **In Germania**, le colonnine rapide vengono dal registro ufficiale della Bundesnetzagentur (Ladesäulenregister), con potenza e prese (senza tensione: si usa quella tipica di ogni rete). Pesa circa 55 MB, quindi si scarica solo con Wi-Fi, una volta al mese e solo sui telefoni che hanno pianificato un percorso in Germania; nel frattempo, OpenStreetMap. L'app sceglie il registro in base a dove passa il percorso, non alla lingua del telefono. **«Colonnine lungo il
+      Spagna, tutto viene da OpenStreetMap, dove potenza o operatore possono mancare. **In Germania**, le colonnine rapide vengono dal registro ufficiale della Bundesnetzagentur (Ladesäulenregister), con potenza e prese (senza tensione: si usa quella tipica di ogni rete). Pesa circa 55 MB, quindi si scarica solo con Wi-Fi, una volta al mese e solo sui telefoni che hanno pianificato un percorso in Germania; nel frattempo, OpenStreetMap. **In Svizzera** vengono dall'Ufficio federale dell'energia (ich-tanke-strom.ch), con la potenza e **quanti punti sono liberi in tempo reale**: «Libere ora: 3 su 4» in verde, «tutte occupate» in ambra o «fuori servizio» in rosso, nell'elenco, in «Vicino a me» e nelle soste del piano; il piano non usa un sito con tutti i punti fuori servizio. Pesa poco (~1 MB): si scarica una volta alla settimana quando un percorso passa per la Svizzera o cerchi colonnine lì, e lo stato si controlla ogni 3 minuti nel frattempo. L'app sceglie il registro in base a dove passa il percorso, non alla lingua del telefono. **«Colonnine lungo il
       percorso»** apre l'elenco con il distintivo di ogni operatore, il km, la potenza, la tensione («350 kW · 920 V»)
       e le prese.
     - **Colonnine vicino a te:** «Vicino a me» (accanto a «Filtra») cerca le colonnine a 5, 10, 25 o 50 km da dove
@@ -480,7 +481,7 @@ supporta.
     percorso».
   - «Strumenti»: tachimetro con **il cartello del limite in grande** sotto la cifra (con un anello ambra se vai oltre e
     rosso sopra il 10 %) e la velocità massima, forze G con la scia degli ultimi secondi e i picchi, inclinazione e un
-    punteggio di dolcezza di guida (0-100) in base agli strappi in accelerazione, frenata e sterzata.
+    punteggio di dolcezza di guida (0-100) in base agli strappi in accelerazione, frenata e sterzata. Sotto i km/h, il **cronometro 0-50 e 0-100 km/h**: parte da solo quando riparti da fermo e, con il GPS del telefono, è preciso a uno o due decimi.
   - **Il limite di velocità** (Guida e Strumenti) viene da OpenStreetMap: quello della strada nel tuo senso di marcia o
     quello della sua zona («DE:urban», «AT:rural»…). Dove manca, si assume il limite generale del paese per il tipo di
     strada (Spagna, Portogallo, Germania, Austria, Svizzera, Italia, Francia, Paesi Bassi, Belgio e Lussemburgo), con
@@ -787,6 +788,11 @@ del gasolio» (€/l; 1,60 e 1,50 di default), «Confronta con» (benzina o dies
 (6,5 e 5,5 l/100 km di default). Da qui escono il risparmio rispetto a un'auto a combustione (Efficienza, resoconto del
 mese) e la CO₂ evitata; sulla REEV, la benzina del generatore si conta sempre al prezzo della benzina.
 
+«Valuta» (sul telefono, nelle Impostazioni, sopra i prezzi): quella di prezzi e costi. «Automatica» usa il paese della
+tua SIM, che non cambia quando viaggi (con una SIM italiana in Svizzera resta in euro); oppure ne scegli una: euro,
+franco svizzero, sterlina, corona danese, svedese, norvegese e islandese, złoty, corona ceca, fiorino o leu. Se la
+cambi, i prezzi vengono convertiti con un cambio approssimativo: controllali.
+
 «Colore del pannello laterale»: «Automatico» (scuro di notte e chiaro di giorno, come lo schermo dell'auto) o uno di 16
 colori fissi, che resta uguale di giorno e di notte. Si applica subito, e il testo del pannello diventa chiaro o scuro
 perché si legga.
@@ -889,6 +895,13 @@ e lo usa in «Auto esteso»:
   2,1 bar, 0,3 bar o più sotto gli altri, o con l'avviso dell'auto stessa); porte e bagagliaio aperti (aperti anche nel
   modello), la chiusura, il contachilometri e quanto è vecchio il dato. Il cloud non indica i finestrini. La vista 3D si
   ridisegna solo mentre la muovi (non scalda il telefono); senza WebGL compare l'auto vista dall'alto.
+- **«La mia auto»** (quarta scheda dell'app del telefono, 0.3.10): la tua auto come nell'app Leapmotor, ma qui. In
+  alto autonomia, batteria e se è chiusa a chiave; al centro **la C10 in 3D** (si gira con il dito; porte e bagagliaio
+  aperti si aprono nel modello); sotto, la fila di comandi **Apri · Chiudi · Bagagliaio · Clima · Localizza** (gli
+  stessi del widget «Auto», con conferma: servono il PIN dell'auto salvato in «Dati dell'auto» e i comandi attivati;
+  senza, la fila è spenta) le schede **«Ricarica»** (come il centro di ricarica dell'app Leapmotor: la % sopra una batteria disegnata, lo stato della ricarica e le ultime ricariche viste da Qonecta+, con la % e la colonnina) e **«Consumi»** (Settimana / Mese / Anno: km, energia, consumo ogni 100 km e la ripartizione Guida / Clima / Altro, gli stessi valori dell'app Leapmotor, e gli ultimi viaggi; «Tutti i viaggi ›» e «Tutte le ricariche ›» portano a Viaggi), e due schede che si aprono: **«Clima»** (temperatura dell'abitacolo, il clima acceso da qui
+  e il pulsante del clima) e **«Stato»** (le quattro pressioni, in ambra la gomma bassa o con avviso; porte e
+  bagagliaio; temperatura della batteria; contachilometri). Legge il cloud solo mentre la scheda è visibile.
 - **C10 REEV (range extender):** Qonecta+ la riconosce da solo (l'auto comunica il suo serbatoio) e porta la batteria a
   28,4 kWh. In «Stato», il **serbatoio** (%, litri esatti, autonomia a benzina e autonomia totale); in «Viaggi», i
   **litri** di ogni viaggio e i L/100 km (con il generatore spento, «0 L di benzina: tutto elettrico»), e il costo
@@ -934,7 +947,7 @@ cancellare nulla.
 
 **Privacy e sicurezza.**
 
-- Sola lettura, con un'eccezione facoltativa: i **comandi del widget «Auto»** (chiudere, aprire, bagagliaio, clima e
+- Sola lettura, con un'eccezione facoltativa: i **comandi del widget «Auto» e della scheda «La mia auto»** (chiudere, aprire, bagagliaio, clima e
   localizzare), e solo se salvi il PIN dell'auto in «Dati dell'auto» → «5 · PIN dell'auto» e lì attivi i comandi dal
   widget (il PIN è quello dell'app Leapmotor; resta cifrato sul telefono e non finisce mai nel registro). Senza PIN,
   Qonecta+ **non invia mai comandi all'auto**, e non esiste nessun altro comando (niente ricarica né limiti). Ogni
@@ -1197,7 +1210,7 @@ Puoi chiedere aiuto sulla pagina GitHub del progetto: [CharlysEV/qonecta](https:
 - Dati online: mappe, strade e colonnine © collaboratori di **OpenStreetMap** (ODbL), tramite Overpass, OSRM, Photon
   (komoot) e Nominatim; meteo e altitudine di **Open-Meteo.com** (CC BY 4.0) e Open Topo Data; colonnine in Spagna dal
   registro del MITECO pubblicato dalla DGT e in Germania dal Ladesäulenregister della **Bundesnetzagentur**
-  (CC BY 4.0); radio da **radio-browser.info**; luoghi della Guida di viaggio da **Wikipedia** (CC BY-SA); testi
+  (CC BY 4.0) e in Svizzera dall'**Ufficio federale dell'energia** (ich-tanke-strom.ch, dati aperti); radio da **radio-browser.info**; luoghi della Guida di viaggio da **Wikipedia** (CC BY-SA); testi
   del Karaoke da **LRCLIB**.
 - Emulatori: Nestopia, halfNES, bsnes, ClownMDEmu e PCSX ReARMed, ognuno con la sua licenza. Tutto in
   [NOTICE](NOTICE).

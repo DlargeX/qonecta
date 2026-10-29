@@ -52,7 +52,7 @@ Puedes elegir entre dos modos:
 |---|---|
 | Coche | Leapmotor C10 con su app de espejo (proyección del móvil) en la pantalla. También funciona en un **T03** con Android Auto normal (comprobado por un usuario). |
 | Móvil | Android con **Android Auto** instalado. Se recomienda **Android 10 o superior**; elegir el idioma de la app necesita Android 13. |
-| Probado en | Samsung Galaxy **S25 Ultra** con **Android 16** y Android Auto 17.7. Otros móviles pueden funcionar, pero no se han probado. |
+| Probado en | Samsung Galaxy **S25 Ultra** con **Android 16** y Android Auto 17.7 y 17.9. Otros móviles pueden funcionar, pero no se han probado. |
 | Android Auto 17.4 o superior | Hace falta activar una vez su **modo desarrollador** y el servicio de **accesibilidad** de Qonecta+. La app te guía (sección 3). Con versiones anteriores no hace falta. |
 | Internet (opcional) | Solo para funciones de «Auto extendido» como rutas, tiempo o radio. |
 
@@ -273,7 +273,8 @@ se ha probado:
 | Android Auto | Estado |
 |---|---|
 | 17.7.x | **Probada** con Qonecta+ (octubre de 2026) |
-| 17.8, 17.9 y posteriores | **Sin probar todavía.** Otros proyectos (Open Headunit) cuentan problemas: con la 17.8 la conexión se corta a los 1-2 s; con la 17.9, el arranque automático del servidor deja de funcionar |
+| 17.9.x | **Probada** con Qonecta+ (octubre de 2026): decenas de viajes por Wi-Fi Direct y por cable sin problemas |
+| 17.8, 18 y posteriores | **Sin probar todavía.** Otros proyectos (Open Headunit) cuentan que con la 17.8 la conexión se corta a los 1-2 s |
 
 La «Comprobación» lo dice en la fila «Android Auto 17.x» (probada / sin probar todavía), y el log lo apunta al arrancar
 (`androidAuto=…`) y en cada sesión (columna `aa_version` de `sessions.csv`).
@@ -296,7 +297,7 @@ Si una versión nueva deja de funcionar:
 > [!WARNING]
 > **Volver a una versión anterior de Android Auto no es «Desinstalar actualizaciones».** En muchos móviles la copia de
 > fábrica de Android Auto es solo un esqueleto (1.x) que no sirve para Qonecta+: hay que instalar a mano el APK de la
-> versión probada (17.7.x) que corresponda a tu móvil (arquitectura y versión de Android) y después desactivar la
+> versión probada (17.9.x o 17.7.x) que corresponda a tu móvil (arquitectura y versión de Android) y después desactivar la
 > actualización automática, o Play Store la volverá a subir.
 
 ---
@@ -423,7 +424,7 @@ admite.
       OpenStreetMap, donde la potencia o la red pueden faltar. **En Alemania**, los rápidos salen del registro oficial de
       la Bundesnetzagentur (Ladesäulenregister), con su potencia y sus enchufes (sin voltaje: se usa el típico de cada
       red). Pesa unos 55 MB, así que se baja solo con Wi-Fi, una vez al mes y solo en los móviles que han planificado
-      alguna ruta por Alemania; mientras, OpenStreetMap. La app elige el registro por dónde pasa la ruta, no por el
+      alguna ruta por Alemania; mientras, OpenStreetMap. **En Suiza**, salen de la Oficina Federal de Energía (ich-tanke-strom.ch), con su potencia y **cuántos puntos hay libres en directo**: «Libres ahora: 3 de 4» en verde, «todos ocupados» en ámbar o «fuera de servicio» en rojo, en la lista, en «Cerca de mí» y en las paradas del plan; el plan no usa un sitio con todos sus puntos fuera de servicio. Pesa poco (~1 MB): se baja una vez por semana cuando una ruta pasa por Suiza o buscas cargadores allí, y el estado se mira cada 3 minutos mientras tanto. La app elige el registro por dónde pasa la ruta, no por el
       idioma del móvil. **«Cargadores en ruta»** abre la lista con el distintivo
       de cada red, el km, la potencia, el voltaje («350 kW · 920 V») y los enchufes.
     - **Cargadores cerca de ti:** «Cerca de mí» (junto a «Filtrar») busca los cargadores a 5, 10, 25 o 50 km de donde
@@ -479,7 +480,7 @@ admite.
     «Récord de ruta».
   - «Instrumentos»: velocímetro con **la señal del límite en grande** debajo de la cifra (con un aro ámbar si vas por
     encima y rojo si pasas de un 10 %) y la máxima, fuerzas G con la estela de los últimos segundos y los picos,
-    inclinación y una nota de suavidad (0-100) según los tirones al acelerar, frenar y girar.
+    inclinación y una nota de suavidad (0-100) según los tirones al acelerar, frenar y girar. Debajo de los km/h, el **cronómetro 0-50 y 0-100 km/h**: se pone solo al salir desde parado y, con el GPS del móvil, acierta a una o dos décimas.
   - **El límite de velocidad** (Conducción e Instrumentos) sale de OpenStreetMap: el de la vía en tu sentido o el de su
     zona («DE:urban», «AT:rural»…). Donde no lo tiene, se supone el general del país por el tipo de vía (España,
     Portugal, Alemania, Austria, Suiza, Italia, Francia, Países Bajos, Bélgica y Luxemburgo) y pone «estimado». En la
@@ -777,6 +778,11 @@ de los viajes; 0,20 de serie), y ver la conexión y el motor que se están usand
 5,5 l/100 km de serie). Con ellos salen el ahorro frente a un coche de combustión (Eficiencia, informe del mes) y el
 CO₂ que te ahorras; en el REEV, la gasolina que pone el generador cuenta siempre al precio de la gasolina.
 
+«Moneda» (en el móvil, en Ajustes, encima de los precios): la de los precios y los costes. En «Automática», la del
+país de tu SIM, que no cambia al viajar (con una SIM española en Suiza, sigue en euros); o eliges una: euro, franco
+suizo, libra, coronas danesa, sueca, noruega e islandesa, esloti, corona checa, forinto o leu. Al cambiarla, los
+precios que tenías se pasan con un cambio aproximado: revísalos.
+
 «Color del panel lateral»: «Automático» (oscuro de noche y claro de día, como la pantalla del coche) o uno de 16 colores
 fijos, que se queda igual de día y de noche. Se aplica al momento, y el texto del panel pasa a claro u oscuro para que
 se lea.
@@ -879,6 +885,14 @@ en «Auto extendido»:
   0,3 bar o más por debajo de las demás, o con el aviso del propio coche); las puertas y el maletero abiertos (abiertos
   en el dibujo), el cierre, el cuentakilómetros y de cuándo es el dato. Las ventanillas no las da la nube. El 3D solo se
   dibuja mientras lo mueves (no calienta el móvil); sin WebGL sale el coche visto desde arriba.
+- **«Mi coche»** (cuarta pestaña de la app del móvil, 0.3.10): tu coche como en la app de Leapmotor, pero aquí. Arriba
+  la autonomía, la batería y si está cerrado con llave; en medio **el C10 en 3D** (se gira con el dedo; las puertas y
+  el maletero abiertos se abren en el dibujo); debajo, la fila de órdenes **Abrir · Cerrar · Maletero · Clima ·
+  Localizar** (las mismas del widget «Coche», con su confirmación: necesitan el PIN del coche guardado en «Datos del
+  coche» y las órdenes activadas; sin ellas la fila sale apagada) las tarjetas **«Carga»** (como el «Centro de carga» de Leapmotor: el % sobre una batería dibujada, el estado de la carga y las últimas cargas que vio Qonecta+, con el % y el cargador) y **«Consumo»** (Semana / Mes / Año: km, energía, consumo por 100 km y el reparto Conducción / Clima / Otros, las mismas cifras que la app de Leapmotor, y los últimos viajes; «Todos los viajes ›» y «Todas las cargas ›» llevan a Viajes), y dos tarjetas que se despliegan: **«Clima»**
+  (temperatura del habitáculo, el clima encendido desde aquí y el botón del clima) y **«Salud»** (las cuatro
+  presiones, en ámbar la rueda baja o con aviso; puertas y maletero; temperatura de la batería; cuentakilómetros).
+  Solo lee la nube mientras la pestaña está a la vista.
 - **C10 REEV (autonomía extendida):** Qonecta+ lo reconoce solo (el coche manda su depósito) y pasa la batería a
   28,4 kWh. En «Estado», el **depósito** (%, litros exactos, autonomía con gasolina y autonomía total); en «Viajes», los
   **litros** de cada viaje y los L/100 km (con el generador parado, «0 L: todo eléctrico»), y el coste con la gasolina;
@@ -920,7 +934,7 @@ del coche» lo apaga sin borrar nada.
 
 **Privacidad y seguridad.**
 
-- Solo lectura, con una excepción opcional: las **órdenes del widget «Coche»** (cerrar, abrir, maletero, clima y
+- Solo lectura, con una excepción opcional: las **órdenes del widget «Coche» y de la pestaña «Mi coche»** (cerrar, abrir, maletero, clima y
   localizar), y solo si guardas el PIN del coche en «Datos del coche» → «5 · PIN del coche» y activas allí las órdenes
   desde el widget (el PIN es el de la app de Leapmotor; se guarda cifrado en el móvil y nunca va al log). Sin PIN,
   Qonecta+ **nunca manda órdenes al coche**, y no existe ninguna otra (ni carga ni límites). Cada orden se confirma
@@ -1181,7 +1195,7 @@ Puedes pedir ayuda en la página del proyecto en GitHub: [CharlysEV/qonecta](htt
 - Datos en línea: mapas, carreteras y cargadores © colaboradores de **OpenStreetMap** (ODbL), con Overpass, OSRM,
   Photon (komoot) y Nominatim; tiempo y altitud de **Open-Meteo.com** (CC BY 4.0) y Open Topo Data; cargadores en
   España del registro del MITECO publicado por la DGT y en Alemania del Ladesäulenregister de la
-  **Bundesnetzagentur** (CC BY 4.0); radio de **radio-browser.info**; lugares de la Guía del camino de **Wikipedia**
+  **Bundesnetzagentur** (CC BY 4.0) y en Suiza de la **Oficina Federal de Energía** (ich-tanke-strom.ch, datos abiertos); radio de **radio-browser.info**; lugares de la Guía del camino de **Wikipedia**
   (CC BY-SA); letras del Karaoke de **LRCLIB**.
 - Emuladores: Nestopia, halfNES, bsnes, ClownMDEmu y PCSX ReARMed, cada uno con su licencia. Todo, en
   [NOTICE](NOTICE).

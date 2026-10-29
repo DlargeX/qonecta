@@ -52,7 +52,7 @@ There are two modes:
 |---|---|
 | Car | Leapmotor C10 with its mirroring (phone projection) app on the screen. It also works on a **T03** with plain Android Auto (confirmed by a user). |
 | Phone | Android with **Android Auto** installed. **Android 10 or later** is recommended; choosing the app language needs Android 13. |
-| Tested on | Samsung Galaxy **S25 Ultra** with **Android 16** and Android Auto 17.7. Other phones may work but haven't been tested. |
+| Tested on | Samsung Galaxy **S25 Ultra** with **Android 16** and Android Auto 17.7 and 17.9. Other phones may work but haven't been tested. |
 | Android Auto 17.4 or later | You need to turn on Android Auto's **developer mode** once and Qonecta+'s **accessibility** service. The app guides you (section 3). Older versions don't need either. |
 | Internet (optional) | Only for "Auto extended" features such as routes, weather or radio. |
 
@@ -268,7 +268,8 @@ can change it (the texts of its ⋮ menu or how it handles the connection). Vers
 | Android Auto | Status |
 |---|---|
 | 17.7.x | **Tested** with Qonecta+ (October 2026) |
-| 17.8, 17.9 and later | **Not tested yet.** Other projects (Open Headunit) report problems: with 17.8 the connection drops after 1-2 s; with 17.9 the automatic server start stops working |
+| 17.9.x | **Tested** with Qonecta+ (October 2026): dozens of trips over Wi-Fi Direct and cable without problems |
+| 17.8, 18 and later | **Not tested yet.** Other projects (Open Headunit) report that with 17.8 the connection drops after 1-2 s |
 
 The "Checklist" shows it in the "Android Auto 17.x" row (tested / not tested yet), and the log records it at start-up
 (`androidAuto=…`) and for every session (`aa_version` column of `sessions.csv`).
@@ -290,7 +291,7 @@ If a new version stops working:
 
 > [!WARNING]
 > **Going back to an older Android Auto is not "Uninstall updates".** On many phones the factory copy of Android Auto is
-> just a stub (1.x) that's useless for Qonecta+: you have to install by hand the APK of the tested version (17.7.x)
+> just a stub (1.x) that's useless for Qonecta+: you have to install by hand the APK of the tested version (17.9.x or 17.7.x)
 > that matches your phone (architecture and Android version) and then turn off auto-update, or the Play Store will
 > upgrade it again.
 
@@ -411,7 +412,7 @@ version). That tells us whether the C10 supports it.
       Ecological Transition, published by the DGT at nap.dgt.es): the power and **voltage** of each one. It is
       downloaded on the phone once a week (about 3 MB). What the registry lacks (some operators have not registered
       all their points) is filled in from OpenStreetMap, without repeating the ones already there; outside Spain,
-      everything comes from OpenStreetMap, where power or network may be missing. **In Germany**, fast chargers come from the Bundesnetzagentur's official register (Ladesäulenregister), with their power and sockets (no voltage: each network's typical one is used). It weighs about 55 MB, so it is only downloaded on Wi-Fi, once a month and only on phones that have planned a route through Germany; meanwhile, OpenStreetMap. The app picks the register by where the route goes, not by the phone's language. **"Chargers along the route"** opens
+      everything comes from OpenStreetMap, where power or network may be missing. **In Germany**, fast chargers come from the Bundesnetzagentur's official register (Ladesäulenregister), with their power and sockets (no voltage: each network's typical one is used). It weighs about 55 MB, so it is only downloaded on Wi-Fi, once a month and only on phones that have planned a route through Germany; meanwhile, OpenStreetMap. **In Switzerland**, they come from the Swiss Federal Office of Energy (ich-tanke-strom.ch), with their power and **how many points are free right now**: "Free now: 3 of 4" in green, "all occupied" in amber or "out of service" in red, in the list, in "Near me" and on the plan's stops; the plan skips a site whose points are all out of service. It is small (~1 MB): it is downloaded once a week when a route goes through Switzerland or you search for chargers there, and the status is checked every 3 minutes meanwhile. The app picks the register by where the route goes, not by the phone's language. **"Chargers along the route"** opens
       the list with each network's badge, the km, the power, the voltage ("350 kW · 920 V") and the sockets.
     - **Chargers near you:** "Near me" (next to "Filter") finds the chargers 5, 10, 25 or 50 km from where you are,
       without a route, nearest first: pick the network ("the Wenea ones near me") and the minimum power, and see how far
@@ -464,7 +465,7 @@ version). That tells us whether the C10 supports it.
     the fastest trip of each repeated road gets "Route record".
   - "Gauges": speedometer with **the speed limit sign in large** under the figure (with an amber ring if you are above it
     and red beyond 10 %) and the maximum, G forces with the trail of the last seconds and the peaks, inclination and a
-    smoothness score (0-100) from the jerks when accelerating, braking and turning.
+    smoothness score (0-100) from the jerks when accelerating, braking and turning. Under the km/h, the **0-50 and 0-100 km/h timer**: it starts by itself when you pull away from a stop and, with the phone's GPS, is accurate to one or two tenths of a second.
   - **The speed limit** (Driving and Gauges) comes from OpenStreetMap: the one of the road in your direction or that of
     its zone ("DE:urban", "AT:rural"…). Where it is missing, the country's general limit for the road type is assumed
     (Spain, Portugal, Germany, Austria, Switzerland, Italy, France, the Netherlands, Belgium and Luxembourg) and marked
@@ -761,6 +762,11 @@ a few seconds"), auto-hide the panel and latency optimizations, the "Electricity
 default). They give the savings against a combustion car (Efficiency, monthly report) and the CO₂ you avoid; on the
 REEV, the petrol the generator uses is always counted at the petrol price.
 
+"Currency" (on the phone, in Settings, above the prices): the one for prices and costs. "Automatic" uses your SIM
+card's country, which does not change when you travel (with a Spanish SIM in Switzerland it stays in euros); or pick
+one: euro, Swiss franc, pound, Danish, Swedish, Norwegian and Icelandic krone, złoty, Czech koruna, forint or leu.
+When you change it, your prices are converted at an approximate rate: check them.
+
 "Side panel color": "Automatic" (dark at night and light by day, like the car's screen) or one of 16 fixed colors, which
 stays the same day and night. It applies at once, and the panel's text turns light or dark so it stays readable.
 
@@ -861,6 +867,13 @@ extended":
   warning); open doors and boot (open on the model), the lock, the odometer and how old the data is. The cloud does not
   report the windows. The 3D view only redraws while you move it (it doesn't heat the phone); without WebGL you get the
   car seen from above.
+- **"My car"** (fourth tab of the phone app, 0.3.10): your car as in the Leapmotor app, but here. At the top the
+  range, the battery and whether it is locked; in the middle **the C10 in 3D** (turn it with your finger; open doors
+  and boot open in the drawing); below, the row of orders **Unlock · Lock · Boot · Climate · Locate** (the same as the
+  "Car" widget, with their confirmation: they need the car's PIN saved in "Car data" and the orders enabled; without
+  them the row is dimmed) the cards **"Charging"** (like the charging centre of the Leapmotor app: the % over a drawn battery, the charging state and the latest charges Qonecta+ saw, with the % and the charger) and **"Consumption"** (Week / Month / Year: km, energy, consumption per 100 km and the Driving / A/C / Other split, the same figures as the Leapmotor app, and the latest trips; "All trips ›" and "All charges ›" open Trips), and two cards that unfold: **"Climate"** (cabin temperature, the climate turned on from here
+  and the climate button) and **"Health"** (the four pressures, amber for a low tyre or a warning; doors and boot;
+  battery temperature; odometer). It only reads the cloud while the tab is visible.
 - **C10 REEV (range extender):** Qonecta+ recognises it by itself (the car reports its tank) and switches the battery
   to 28.4 kWh. In "Status", the **tank** (%, exact litres, range on petrol and total range); in "Trips", the **litres**
   of each trip and L/100 km (with the generator off, "0 L: all electric"), and the cost including petrol; in "Route",
@@ -903,7 +916,7 @@ data" turns it off without deleting anything.
 
 **Privacy and security.**
 
-- Read-only, with one optional exception: the **commands of the "Car" widget** (lock, unlock, boot, climate and find),
+- Read-only, with one optional exception: the **commands of the "Car" widget and of the "My car" tab** (lock, unlock, boot, climate and find),
   and only if you save your car PIN in "Car data" → "5 · Car PIN" and turn on the widget commands there (the PIN is
   the one in the Leapmotor app; stored encrypted on the phone and never logged). Without a PIN, Qonecta+ **never sends
   commands to the car**, and no other command exists (no charging or limits). Every command is confirmed before it is
@@ -1161,7 +1174,7 @@ You can ask for help on the project's GitHub page: [CharlysEV/qonecta](https://g
 - Online data: maps, roads and chargers © **OpenStreetMap** contributors (ODbL), through Overpass, OSRM, Photon
   (komoot) and Nominatim; weather and elevation by **Open-Meteo.com** (CC BY 4.0) and Open Topo Data; chargers in Spain
   from the MITECO registry published by the DGT and in Germany from the **Bundesnetzagentur** Ladesäulenregister
-  (CC BY 4.0); radio from **radio-browser.info**; Road guide places from **Wikipedia** (CC BY-SA); Karaoke lyrics
+  (CC BY 4.0) and in Switzerland from the **Swiss Federal Office of Energy** (ich-tanke-strom.ch, open data); radio from **radio-browser.info**; Road guide places from **Wikipedia** (CC BY-SA); Karaoke lyrics
   from **LRCLIB**.
 - Emulators: Nestopia, halfNES, bsnes, ClownMDEmu and PCSX ReARMed, each under its own licence. All of it, in
   [NOTICE](NOTICE).
